@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [<assembly: AssemblyTitle("Swashbuckle.NodaTime")>]
-[<assembly: AssemblyDescription("Easily add ")>]
+[<assembly: AssemblyDescription("Easily configure Swashbuckle to generate correct documentation for NodaTime types.")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("Jakub Kadlubiec")>]
 [<assembly: AssemblyProduct("Swashbuckle.NodaTime")>]
