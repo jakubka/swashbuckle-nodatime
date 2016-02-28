@@ -28,14 +28,17 @@ module Schemas =
         let serializerSettings =
             JsonSerializerSettings()
                 .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb)
+        let stringRepresentation value =
+            // this produces value including quotes, for example: "13:45:13.784"
+            let jsonString = JsonConvert.SerializeObject(value, serializerSettings)
 
-        let serialize value =
-            JsonConvert.SerializeObject(value, serializerSettings)
+            // deserializing into string will remove quotes
+            JsonConvert.DeserializeObject<string>(jsonString)
 
         let stringSchema value =
             Schema(
                 ``type`` = "string",
-                example = serialize value)
+                example = stringRepresentation value)
 
         let instant = Instant.FromUtc(2016, 9, 22, 16, 53)
         let duration = Duration.FromMilliseconds(49513784L)

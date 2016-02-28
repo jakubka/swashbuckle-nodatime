@@ -21,7 +21,11 @@ module SchemasTests =
         JsonConvert.DeserializeObject<'T>(json, serializerSettings)
 
     let private tryDeserializeExample<'T> (schema: Schema) =
-        deserialize<'T> (schema.example.ToString()) |> ignore
+        schema.example
+        |> string
+        |> JsonConvert.SerializeObject
+        |> deserialize<'T>
+        |> ignore
 
     [<Test>]
     let ``Examples in schemas should be deserializable`` () =
