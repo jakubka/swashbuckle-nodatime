@@ -9,7 +9,10 @@
     <projectUrl>https://github.com/jakubka/swashbuckle-nodatime</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial version.</releaseNotes>
+    <releaseNotes>
+		- fixed bug with double quotes in swagger examples
+		- it is now required to provide JsonSerializerSettings when configuring swagger for NodaTime (breaking change)
+	</releaseNotes>
     <tags>swagger rest swashbuckle nodatime</tags>
   </metadata>
 </package>
