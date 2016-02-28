@@ -5,7 +5,6 @@ open Swashbuckle.Swagger
 open Newtonsoft.Json
 
 open NodaTime
-open NodaTime.Serialization.JsonNet
 
 module Schemas =
 
