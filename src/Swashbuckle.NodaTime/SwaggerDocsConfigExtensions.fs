@@ -6,6 +6,8 @@ open Swashbuckle.Application
 
 open NodaTime
 
+open Newtonsoft.Json
+
 open Schemas
 
 [<AutoOpen>]
@@ -13,9 +15,10 @@ open Schemas
 module SwaggerDocsConfigExtensions =
 
     [<Extension>]
-    let ConfigureForNodaTime (config: SwaggerDocsConfig) =
+    let ConfigureForNodaTime (config: SwaggerDocsConfig, serializerSettings: JsonSerializerSettings) =
         let schemas =
-            Schemas.Create ()
+            serializerSettings
+            |> Schemas.Create
 
         config.MapType<Instant>(fun () -> schemas.Instant)
         config.MapType<LocalDate>(fun () -> schemas.LocalDate)
@@ -30,4 +33,5 @@ module SwaggerDocsConfigExtensions =
         config.MapType<DateTimeZone>(fun () -> schemas.DateTimeZone)
 
     type SwaggerDocsConfig with
-        member this.ConfigureForNodaTime() = this |> ConfigureForNodaTime
+        member this.ConfigureForNodaTime(serializerSettings: JsonSerializerSettings) =
+            ConfigureForNodaTime(this, serializerSettings)

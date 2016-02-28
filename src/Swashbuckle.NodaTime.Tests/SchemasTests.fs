@@ -31,7 +31,8 @@ module SchemasTests =
     let ``Examples in schemas should be deserializable`` () =
 
         let schemas =
-            Schemas.Create()
+            serializerSettings
+            |> Schemas.Create
             
         tryDeserializeExample<Instant>(schemas.Instant)
         tryDeserializeExample<DateTimeZone>(schemas.DateTimeZone)

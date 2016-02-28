@@ -24,10 +24,7 @@ module Schemas =
             DateTimeZone: Schema
         }
 
-    let Create (): Container =
-        let serializerSettings =
-            JsonSerializerSettings()
-                .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb)
+    let Create (serializerSettings: JsonSerializerSettings): Container =
         let stringRepresentation value =
             // this produces value including quotes, for example: "13:45:13.784"
             let jsonString = JsonConvert.SerializeObject(value, serializerSettings)
