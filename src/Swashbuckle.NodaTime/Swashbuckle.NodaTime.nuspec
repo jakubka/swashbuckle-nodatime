@@ -10,9 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-		- fixed bug with double quotes in swagger examples
-		- it is now required to provide JsonSerializerSettings when configuring swagger for NodaTime (breaking change)
-	</releaseNotes>
+      See https://github.com/jakubka/swashbuckle-nodatime/blob/master/CHANGELOG.md
+    </releaseNotes>
     <tags>swagger rest swashbuckle nodatime</tags>
   </metadata>
 </package>

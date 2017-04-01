@@ -1,0 +1,31 @@
+configuration:
+  - Release
+
+before_build:
+  - nuget restore src/Swashbuckle.NodaTime.sln
+
+build:
+  project: src/Swashbuckle.NodaTime.sln
+
+test:
+  assemblies:
+    - src/**/*.Tests.dll
+
+after_test:
+  - nuget pack src/Swashbuckle.NodaTime/Swashbuckle.NodaTime.fsproj
+
+artifacts:
+  - path: Swashbuckle.NodaTime.*.nupkg
+    name: swashbuckle-nodatime-nuget
+
+deploy:
+  - provider: NuGet
+    api_key:
+      secure: jWAshFhHvjvr6K3fCNqTZAAOXOx4OIcvbZ+Ng/WFBD236+YT00xPK8IKDA1UXNWo
+    skip_symbols: true
+    artifact: swashbuckle-nodatime-nuget
+    on:
+      branch: master
+
+assembly_info:
+  patch: false
