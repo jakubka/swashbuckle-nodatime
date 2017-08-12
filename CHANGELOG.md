@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.0.0] - 2017-07-29
 ### Changed
-- Upgraded to be compatible with the latest stable release of NodaTime - 2.2.0 (thanks @CodeRevver)
+- Upgraded to be compatible with the latest stable release of NodaTime - 2.0.0 (thanks @CodeRevver)
 
 ## [2.2.0] - 2017-04-01
 ### Changed
