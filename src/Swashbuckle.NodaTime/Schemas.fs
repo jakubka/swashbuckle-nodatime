@@ -47,7 +47,7 @@ module Schemas =
         let offsetDateTime = zonedDateTime.ToOffsetDateTime()
         let interval = Interval(instant, instant.Plus(duration))
         let offset = timeZone.MaxOffset
-        let period = Period.Between(localDateTime, localDateTime.PlusTicks(duration.Ticks))
+        let period = Period.Between(localDateTime, localDateTime.PlusTicks(duration.BclCompatibleTicks))
 
         let intervalSchema =
             let properties = System.Collections.Generic.Dictionary<string, Schema>()
