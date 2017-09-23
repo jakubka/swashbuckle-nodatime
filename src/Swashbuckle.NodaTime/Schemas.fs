@@ -1,5 +1,7 @@
 ﻿namespace Swashbuckle.NodaTime
 
+open System
+
 open Swashbuckle.AspNetCore.Swagger
 
 open Newtonsoft.Json
@@ -36,7 +38,7 @@ module Schemas =
                 Type = "string",
                 Example = stringRepresentation value)
 
-        let instant = Instant.FromUtc(2016, 9, 22, 16, 53)
+        let instant = Instant.FromDateTimeOffset(DateTimeOffset.Now)
         let duration = Duration.FromMilliseconds(49513784L)
         let timeZone = DateTimeZoneProviders.Tzdb.["America/New_York"]
 
