@@ -2,7 +2,7 @@
 
 open System.Runtime.CompilerServices
 
-open Swashbuckle.Application
+open Swashbuckle.AspNetCore.SwaggerGen
 
 open NodaTime
 
@@ -15,7 +15,7 @@ open Schemas
 module SwaggerDocsConfigExtensions =
 
     [<Extension>]
-    let ConfigureForNodaTime (config: SwaggerDocsConfig, serializerSettings: JsonSerializerSettings) =
+    let ConfigureForNodaTime (config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
         let schemas =
             serializerSettings
             |> Schemas.Create
@@ -42,6 +42,6 @@ module SwaggerDocsConfigExtensions =
         config.MapType<System.Nullable<Offset>>(fun () -> schemas.Offset)
         config.MapType<System.Nullable<Duration>>(fun () -> schemas.Duration)
 
-    type SwaggerDocsConfig with
+    type SwaggerGenOptions with
         member this.ConfigureForNodaTime(serializerSettings: JsonSerializerSettings) =
             ConfigureForNodaTime(this, serializerSettings)

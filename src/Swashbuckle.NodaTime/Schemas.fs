@@ -1,6 +1,6 @@
 ﻿namespace Swashbuckle.NodaTime
 
-open Swashbuckle.Swagger
+open Swashbuckle.AspNetCore.Swagger
 
 open Newtonsoft.Json
 
@@ -33,8 +33,8 @@ module Schemas =
 
         let stringSchema value =
             Schema(
-                ``type`` = "string",
-                example = stringRepresentation value)
+                Type = "string",
+                Example = stringRepresentation value)
 
         let instant = Instant.FromUtc(2016, 9, 22, 16, 53)
         let duration = Duration.FromMilliseconds(49513784L)
@@ -55,10 +55,11 @@ module Schemas =
             properties.Add("End", stringSchema interval.End)
 
             Schema(
-                ``type`` = "object",
-                properties = properties)
+                Type = "object",
+                Properties = properties)
 
         {
+            
             Container.Instant = stringSchema instant
             Container.LocalDate = stringSchema localDate
             Container.LocalTime = stringSchema localTime

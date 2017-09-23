@@ -1,8 +1,8 @@
 ﻿namespace Swashbuckle.NodaTime.Tests
 
-open NUnit.Framework
+open Xunit
 
-open Swashbuckle.Swagger
+open Swashbuckle.AspNetCore.Swagger
 
 open Newtonsoft.Json
 
@@ -21,13 +21,13 @@ module SchemasTests =
         JsonConvert.DeserializeObject<'T>(json, serializerSettings)
 
     let private tryDeserializeExample<'T> (schema: Schema) =
-        schema.example
+        schema.Example
         |> string
         |> JsonConvert.SerializeObject
         |> deserialize<'T>
         |> ignore
 
-    [<Test>]
+    [<Fact>]
     let ``Examples in schemas should be deserializable`` () =
 
         let schemas =
