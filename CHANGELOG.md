@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.0.0] - 2017-09-23
+### Changed
+- Upgraded to .netstandard2.0 to support .NET Core (thanks @buvinghausen)
+
 ## [3.0.0] - 2017-07-29
 ### Changed
 - Upgraded to be compatible with the latest stable release of NodaTime - 2.0.0 (thanks @CodeRevver)

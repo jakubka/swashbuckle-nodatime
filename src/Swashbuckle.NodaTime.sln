@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26906.1
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26DF029A-9627-4D81-9EF5-519448B0FDBE}"
-	ProjectSection(SolutionItems) = preProject
-		Swashbuckle.NodaTime\Swashbuckle.NodaTime.nuspec = Swashbuckle.NodaTime\Swashbuckle.NodaTime.nuspec
-	EndProjectSection
-EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Swashbuckle.NodaTime", "Swashbuckle.NodaTime\Swashbuckle.NodaTime.fsproj", "{D24EC3FB-6415-49DD-903B-A8B044F837A6}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Swashbuckle.NodaTime.Tests", "Swashbuckle.NodaTime.Tests\Swashbuckle.NodaTime.Tests.fsproj", "{4016AAA7-B75D-493D-B168-BDD3764DDB0E}"
