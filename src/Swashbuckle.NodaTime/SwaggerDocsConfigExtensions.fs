@@ -1,5 +1,6 @@
 ﻿namespace Swashbuckle.NodaTime
 
+open System
 open System.Runtime.CompilerServices
 
 open Swashbuckle.AspNetCore.SwaggerGen
@@ -32,16 +33,18 @@ module SwaggerDocsConfigExtensions =
         config.MapType<Duration>(fun () -> schemas.Duration)
         config.MapType<DateTimeZone>(fun () -> schemas.DateTimeZone)
 
-        config.MapType<System.Nullable<Instant>>(fun () -> schemas.Instant)
-        config.MapType<System.Nullable<LocalDate>>(fun () -> schemas.LocalDate)
-        config.MapType<System.Nullable<LocalTime>>(fun () -> schemas.LocalTime)
-        config.MapType<System.Nullable<LocalDateTime>>(fun () -> schemas.LocalDateTime)
-        config.MapType<System.Nullable<OffsetDateTime>>(fun () -> schemas.OffsetDateTime)
-        config.MapType<System.Nullable<ZonedDateTime>>(fun () -> schemas.ZonedDateTime)
-        config.MapType<System.Nullable<Interval>>(fun () -> schemas.Interval)
-        config.MapType<System.Nullable<Offset>>(fun () -> schemas.Offset)
-        config.MapType<System.Nullable<Duration>>(fun () -> schemas.Duration)
+        config.MapType<Nullable<Instant>>(fun () -> schemas.Instant)
+        config.MapType<Nullable<LocalDate>>(fun () -> schemas.LocalDate)
+        config.MapType<Nullable<LocalTime>>(fun () -> schemas.LocalTime)
+        config.MapType<Nullable<LocalDateTime>>(fun () -> schemas.LocalDateTime)
+        config.MapType<Nullable<OffsetDateTime>>(fun () -> schemas.OffsetDateTime)
+        config.MapType<Nullable<ZonedDateTime>>(fun () -> schemas.ZonedDateTime)
+        config.MapType<Nullable<Interval>>(fun () -> schemas.Interval)
+        config.MapType<Nullable<Offset>>(fun () -> schemas.Offset)
+        config.MapType<Nullable<Duration>>(fun () -> schemas.Duration)
 
     type SwaggerGenOptions with
         member this.ConfigureForNodaTime(serializerSettings: JsonSerializerSettings) =
             ConfigureForNodaTime(this, serializerSettings)
+        member this.ConfigureForNodaTime =
+            ConfigureForNodaTime(this, JsonConvert.DefaultSettings.Invoke())
