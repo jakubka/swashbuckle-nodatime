@@ -33,7 +33,7 @@ module SchemasTests =
         let schemas =
             serializerSettings
             |> Schemas.Create
-            
+
         tryDeserializeExample<Instant>(schemas.Instant)
         tryDeserializeExample<DateTimeZone>(schemas.DateTimeZone)
         tryDeserializeExample<Duration>(schemas.Duration)

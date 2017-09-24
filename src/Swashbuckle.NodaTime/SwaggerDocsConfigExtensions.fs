@@ -11,12 +11,8 @@ open Newtonsoft.Json
 
 open Schemas
 
-[<AutoOpen>]
-[<Extension>]
-module SwaggerDocsConfigExtensions =
-
-    [<Extension>]
-    let ConfigureForNodaTime (config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
+module internal Config =
+    let Configure(config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
         let schemas =
             serializerSettings
             |> Schemas.Create
@@ -43,8 +39,12 @@ module SwaggerDocsConfigExtensions =
         config.MapType<Nullable<Offset>>(fun () -> schemas.Offset)
         config.MapType<Nullable<Duration>>(fun () -> schemas.Duration)
 
-    type SwaggerGenOptions with
-        member this.ConfigureForNodaTime(serializerSettings: JsonSerializerSettings) =
-            ConfigureForNodaTime(this, serializerSettings)
-        member this.ConfigureForNodaTime =
-            ConfigureForNodaTime(this, JsonConvert.DefaultSettings.Invoke())
+[<AutoOpen>]
+[<Extension>]
+type SwaggerGenOptionsExtensions =
+    [<Extension>]
+    static member ConfigureForNodaTime (config: SwaggerGenOptions) = 
+        Config.Configure(config, JsonConvert.DefaultSettings.Invoke())
+    [<Extension>]
+    static member ConfigureForNodaTime (config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
+        Config.Configure(config, serializerSettings)
