@@ -1,12 +1,10 @@
-﻿namespace Swashbuckle.NodaTime
+﻿namespace Swashbuckle.NodaTime.AspNetCore
 
 open System
-
-open Swashbuckle.AspNetCore.Swagger
-
+open System.Collections.Generic
 open Newtonsoft.Json
-
 open NodaTime
+open Swashbuckle.AspNetCore.Swagger
 
 module Schemas =
 
@@ -52,14 +50,13 @@ module Schemas =
         let period = Period.Between(localDateTime, localDateTime.PlusTicks(duration.BclCompatibleTicks))
 
         let intervalSchema =
-            let properties = System.Collections.Generic.Dictionary<string, Schema>()
+            let properties = Dictionary<string, Schema>()
             properties.Add("Start", stringSchema interval.Start)
             properties.Add("End", stringSchema interval.End)
 
             Schema(
                 Type = "object",
                 Properties = properties)
-
         {
             
             Container.Instant = stringSchema instant

@@ -1,15 +1,11 @@
-﻿namespace Swashbuckle.NodaTime.Tests
-
-open Xunit
-
-open Swashbuckle.AspNetCore.Swagger
+﻿namespace Swashbuckle.NodaTime.AspNetCore.Tests
 
 open Newtonsoft.Json
-
 open NodaTime
 open NodaTime.Serialization.JsonNet
-
-open Swashbuckle.NodaTime
+open Swashbuckle.AspNetCore.Swagger
+open Swashbuckle.NodaTime.AspNetCore
+open Xunit
 
 module SchemasTests =
 

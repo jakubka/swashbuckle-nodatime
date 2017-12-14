@@ -1,15 +1,11 @@
-﻿namespace Swashbuckle.NodaTime
+﻿namespace Swashbuckle.NodaTime.AspNetCore
 
 open System
 open System.Runtime.CompilerServices
-
-open Swashbuckle.AspNetCore.SwaggerGen
-
-open NodaTime
-
 open Newtonsoft.Json
-
-open Schemas
+open NodaTime
+open Swashbuckle.AspNetCore.SwaggerGen
+open Swashbuckle.NodaTime.AspNetCore.Schemas
 
 module internal Config =
     let Configure(config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
