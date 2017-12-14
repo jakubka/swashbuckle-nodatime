@@ -1,10 +1,10 @@
-﻿namespace Swashbuckle.NodaTime
+﻿namespace Swashbuckle.NodaTime.AspNetCore
 
-open Swashbuckle.Swagger
-
+open System
+open System.Collections.Generic
 open Newtonsoft.Json
-
 open NodaTime
+open Swashbuckle.AspNetCore.Swagger
 
 module Schemas =
 
@@ -33,10 +33,10 @@ module Schemas =
 
         let stringSchema value =
             Schema(
-                ``type`` = "string",
-                example = stringRepresentation value)
+                Type = "string",
+                Example = stringRepresentation value)
 
-        let instant = Instant.FromUtc(2016, 9, 22, 16, 53)
+        let instant = Instant.FromDateTimeOffset(DateTimeOffset.Now)
         let duration = Duration.FromMilliseconds(49513784L)
         let timeZone = DateTimeZoneProviders.Tzdb.["America/New_York"]
 
@@ -50,15 +50,15 @@ module Schemas =
         let period = Period.Between(localDateTime, localDateTime.PlusTicks(duration.BclCompatibleTicks))
 
         let intervalSchema =
-            let properties = System.Collections.Generic.Dictionary<string, Schema>()
+            let properties = Dictionary<string, Schema>()
             properties.Add("Start", stringSchema interval.Start)
             properties.Add("End", stringSchema interval.End)
 
             Schema(
-                ``type`` = "object",
-                properties = properties)
-
+                Type = "object",
+                Properties = properties)
         {
+            
             Container.Instant = stringSchema instant
             Container.LocalDate = stringSchema localDate
             Container.LocalTime = stringSchema localTime

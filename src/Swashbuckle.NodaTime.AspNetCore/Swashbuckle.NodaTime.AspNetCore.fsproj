@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net451;netstandard1.6;netstandard2.0</TargetFrameworks>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<Title>Swashbuckle.NodaTime.AspNetCore</Title>
+		<Authors>Jakub Kadlubiec, Brian Buvinghausen</Authors>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Configure Swashbuckle.AspNetCore to generate correct documentation for NodaTime types. Documentation uses JSON Schema's 'example' attribute to show the resulting value.</Description>
+		<Summary>Go to https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/issues to report bugs, request features, etc. forked from https://github.com/jakubka/swashbuckle-nodatime </Summary>
+		<Copyright>Copyright © 2017 Brian Buvinghausen</Copyright>
+		<PackageReleaseNotes>See https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/CHANGELOG.md </PackageReleaseNotes>
+		<PackageLicenseUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/README.md</PackageProjectUrl>
+		<PackageTags>swagger;rest;swashbuckle;nodatime</PackageTags>
+		<RepositoryUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="Schemas.fs" />
+		<Compile Include="SwaggerDocsConfigExtensions.fs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+		<PackageReference Include="NodaTime" Version="2.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+	</ItemGroup>
+
+</Project>
