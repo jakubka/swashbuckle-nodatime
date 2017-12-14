@@ -31,34 +31,34 @@ Call `ConfigureForNodaTime` method on swagger configuration when setting up swag
 ```csharp
 public class Startup
 {
-	public void ConfigureServices(IServiceCollection services)
-	{
-		// This example is using JSON.NETs default settings function with some sample overrides
-		// You may also pass the settings object directly into the ConfigureForNodaTime function
-		JsonConvert.DefaultSettings = () =>
-		{
-			var settings = new JsonSerializerSettings
-			{
-				ContractResolver = new CamelCasePropertyNamesContractResolver(),
-				Converters =
-				{
-					new StringEnumConverter()
-				},
-				NullValueHandling = NullValueHandling.Ignore
-			};
-			settings.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
-			return settings;
-		}
+  public void ConfigureServices(IServiceCollection services)
+  {
+    // This example is using JSON.NETs default settings function with some sample overrides
+    // You may also pass the settings object directly into the ConfigureForNodaTime function
+    JsonConvert.DefaultSettings = () =>
+    {
+      var settings = new JsonSerializerSettings
+      {
+        ContractResolver = new CamelCasePropertyNamesContractResolver(),
+        Converters =
+        {
+          new StringEnumConverter()
+        },
+        NullValueHandling = NullValueHandling.Ignore
+      };
+      settings.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
+      return settings;
+    }
 
-		services.AddSwaggerGen(c =>
-		{
-			c.SwaggerDoc("v1", new Info
-			{
-				Title = "My NodaTime & ASP.NET Core API",
-				Version = "v1"
-			});
-			c.ConfigureForNodaTime();
-		});
-	}
+    services.AddSwaggerGen(c =>
+    {
+      c.SwaggerDoc("v1", new Info
+      {
+        Title = "My NodaTime API",
+        Version = "v1"
+      });
+      c.ConfigureForNodaTime();
+    });
+  }
 }
 ```
