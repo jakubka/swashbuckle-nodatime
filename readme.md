@@ -26,7 +26,7 @@ Install-Package Swashbuckle.NodaTime.AspNetCore
 
 ## Usage
 
-Call `ConfigureForNodaTime` method on swagger configuration when setting up swagger using EnableSwagger method.
+Call `ConfigureForNodaTime` method on swagger configuration when setting up swagger using AddSwaggerGen method.
 
 ```csharp
 public class Startup
