@@ -28,7 +28,7 @@ Install-Package Swashbuckle.NodaTime.AspNetCore
 
 Call `ConfigureForNodaTime` method on swagger configuration when setting up swagger using EnableSwagger method.
 
-```
+```csharp
 public class Startup
 {
 	public void ConfigureServices(IServiceCollection services)
@@ -54,7 +54,7 @@ public class Startup
 		{
 			c.SwaggerDoc("v1", new Info
 			{
-				Title = "My NodaTime API",
+				Title = "My NodaTime & ASP.NET Core API",
 				Version = "v1"
 			});
 			c.ConfigureForNodaTime();
