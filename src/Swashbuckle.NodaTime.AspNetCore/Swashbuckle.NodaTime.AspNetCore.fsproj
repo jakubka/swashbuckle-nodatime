@@ -7,7 +7,7 @@
 		<Title>Swashbuckle.NodaTime.AspNetCore</Title>
 		<Authors>Jakub Kadlubiec, Brian Buvinghausen</Authors>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Description>Configure Swashbuckle to generate correct documentation for NodaTime types. Documentation uses JSON Schema's 'example' attribute to show the resulting value.</Description>
+		<Description>Configure Swashbuckle.AspNetCore to generate correct documentation for NodaTime types. Documentation uses JSON Schema's 'example' attribute to show the resulting value.</Description>
 		<Summary>Go to https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/issues to report bugs, request features, etc. forked from https://github.com/jakubka/swashbuckle-nodatime </Summary>
 		<Copyright>Copyright © 2017 Brian Buvinghausen</Copyright>
 		<PackageReleaseNotes>See https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/CHANGELOG.md </PackageReleaseNotes>
