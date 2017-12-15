@@ -5,11 +5,13 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
 		<IsPackable>false</IsPackable>
-		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Include="SchemasTests.fs" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' != 'net452'">
 		<Compile Include="Program.fs" />
 	</ItemGroup>
 
