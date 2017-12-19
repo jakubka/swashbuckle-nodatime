@@ -7,12 +7,10 @@ open NodaTime
 open Swashbuckle.AspNetCore.SwaggerGen
 open Swashbuckle.NodaTime.AspNetCore.Schemas
 
-module internal Config =
-    let Configure(config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
-        let schemas =
-            serializerSettings
-            |> Schemas.Create
-
+module internal Config = 
+    let Configure(config : SwaggerGenOptions, 
+                  serializerSettings : JsonSerializerSettings) = 
+        let schemas = serializerSettings |> Schemas.Create
         config.MapType<Instant>(fun () -> schemas.Instant)
         config.MapType<LocalDate>(fun () -> schemas.LocalDate)
         config.MapType<LocalTime>(fun () -> schemas.LocalTime)
@@ -24,12 +22,12 @@ module internal Config =
         config.MapType<Period>(fun () -> schemas.Period)
         config.MapType<Duration>(fun () -> schemas.Duration)
         config.MapType<DateTimeZone>(fun () -> schemas.DateTimeZone)
-
         config.MapType<Nullable<Instant>>(fun () -> schemas.Instant)
         config.MapType<Nullable<LocalDate>>(fun () -> schemas.LocalDate)
         config.MapType<Nullable<LocalTime>>(fun () -> schemas.LocalTime)
         config.MapType<Nullable<LocalDateTime>>(fun () -> schemas.LocalDateTime)
-        config.MapType<Nullable<OffsetDateTime>>(fun () -> schemas.OffsetDateTime)
+        config.MapType<Nullable<OffsetDateTime>>
+            (fun () -> schemas.OffsetDateTime)
         config.MapType<Nullable<ZonedDateTime>>(fun () -> schemas.ZonedDateTime)
         config.MapType<Nullable<Interval>>(fun () -> schemas.Interval)
         config.MapType<Nullable<Offset>>(fun () -> schemas.Offset)
@@ -37,10 +35,13 @@ module internal Config =
 
 [<AutoOpen>]
 [<Extension>]
-type SwaggerGenOptionsExtensions =
+type SwaggerGenOptionsExtensions = 
+    
     [<Extension>]
-    static member ConfigureForNodaTime (config: SwaggerGenOptions) = 
+    static member ConfigureForNodaTime(config : SwaggerGenOptions) = 
         Config.Configure(config, JsonConvert.DefaultSettings.Invoke())
+    
     [<Extension>]
-    static member ConfigureForNodaTime (config: SwaggerGenOptions, serializerSettings: JsonSerializerSettings) =
+    static member ConfigureForNodaTime(config : SwaggerGenOptions, 
+                                       serializerSettings : JsonSerializerSettings) = 
         Config.Configure(config, serializerSettings)

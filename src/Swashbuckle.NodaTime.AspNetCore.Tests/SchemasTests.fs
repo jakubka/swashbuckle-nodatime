@@ -7,29 +7,23 @@ open Swashbuckle.AspNetCore.Swagger
 open Swashbuckle.NodaTime.AspNetCore
 open Xunit
 
-module SchemasTests =
-
-    let private serializerSettings =
+module SchemasTests = 
+    let private serializerSettings = 
         JsonSerializerSettings()
             .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb)
-
-    let private deserialize<'T> json =
+    let private deserialize<'T> json = 
         JsonConvert.DeserializeObject<'T>(json, serializerSettings)
-
-    let private tryDeserializeExample<'T> (schema: Schema) =
+    
+    let private tryDeserializeExample<'T>(schema : Schema) = 
         schema.Example
         |> string
         |> JsonConvert.SerializeObject
         |> deserialize<'T>
         |> ignore
-
+    
     [<Fact>]
-    let ``Examples in schemas should be deserializable`` () =
-
-        let schemas =
-            serializerSettings
-            |> Schemas.Create
-
+    let ``Examples in schemas should be deserializable``() = 
+        let schemas = serializerSettings |> Schemas.Create
         tryDeserializeExample<Instant>(schemas.Instant)
         tryDeserializeExample<DateTimeZone>(schemas.DateTimeZone)
         tryDeserializeExample<Duration>(schemas.Duration)
