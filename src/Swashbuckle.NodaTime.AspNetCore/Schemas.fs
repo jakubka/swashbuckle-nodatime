@@ -25,7 +25,7 @@ module Schemas =
             let jsonString = 
                 JsonConvert.SerializeObject(value, serializerSettings)
             // deserializing into string will remove quotes
-            JsonConvert.DeserializeObject<string>(jsonString)
+            JsonConvert.DeserializeObject<string> jsonString
         
         let stringSchema value = 
             Schema(Type = "string", Example = stringRepresentation value)
