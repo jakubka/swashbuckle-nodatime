@@ -62,3 +62,5 @@ public class Startup
   }
 }
 ```
+
+[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)
