@@ -1,33 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net452</TargetFrameworks>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<WarningsAsErrors />
-		<IsPackable>false</IsPackable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net452</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="SchemasTests.fs" />
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Include="SchemasTests.fs" />
+  </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' != 'net452'">
-		<Compile Include="Program.fs" />
-	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net452'">
+    <Compile Include="Program.fs" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-		<PackageReference Include="NodaTime" Version="2.2.4" />
-		<PackageReference Include="NodaTime.Serialization.JsonNet" Version="2.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
-		<PackageReference Include="xunit" Version="2.3.1" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-		<DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="NodaTime" Version="2.2.4" />
+    <PackageReference Include="NodaTime.Serialization.JsonNet" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\Swashbuckle.NodaTime.AspNetCore\Swashbuckle.NodaTime.AspNetCore.fsproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Swashbuckle.NodaTime.AspNetCore\Swashbuckle.NodaTime.AspNetCore.fsproj" />
+  </ItemGroup>
 
 </Project>
