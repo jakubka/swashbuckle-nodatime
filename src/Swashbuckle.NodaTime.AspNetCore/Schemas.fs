@@ -30,7 +30,14 @@ module Schemas =
         let timeZone = DateTimeZoneProviders.Tzdb.GetSystemDefault()
         let instant = Instant.FromDateTimeUtc DateTime.UtcNow
         let zonedDateTime = instant.InZone timeZone
-        let interval = Interval(instant, instant.PlusTicks TimeSpan.TicksPerDay)
+        let interval = 
+            Interval
+                (instant, 
+                 instant.PlusTicks(TimeSpan.TicksPerDay)
+                        .PlusTicks(TimeSpan.TicksPerHour)
+                        .PlusTicks(TimeSpan.TicksPerMinute)
+                        .PlusTicks(TimeSpan.TicksPerSecond)
+                        .PlusTicks(TimeSpan.TicksPerMillisecond))
         {Container.Instant = stringSchema instant;
          Container.LocalDate = stringSchema zonedDateTime.Date;
          Container.LocalTime = stringSchema zonedDateTime.TimeOfDay;
@@ -48,6 +55,6 @@ module Schemas =
                  (Period.Between
                       (zonedDateTime.LocalDateTime, 
                        interval.End.InZone(timeZone).LocalDateTime, 
-                       PeriodUnits.AllDateUnits));
+                       PeriodUnits.AllUnits));
          Container.Duration = stringSchema interval.Duration;
          Container.DateTimeZone = stringSchema timeZone}
