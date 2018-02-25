@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using NodaTime;
 using NodaTime.Serialization.JsonNet;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.NodaTime.AspNetCore.Web.Filters;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web
 {
@@ -47,6 +48,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 				.AddSwaggerGen(o =>
 				{
 					o.SwaggerDoc("v1", new Info { Title = Title, Version = "v1" });
+					o.OperationFilter<OperationFilter>();
 					o.ConfigureForNodaTime();
 				})
 				.AddMvcCore()
