@@ -8,9 +8,9 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers
 {
 	[Consumes("application/json"),
 	 Produces("application/json"),
-	 Route("api/[controller]"),
 	 ProducesResponseType(StatusCodes.Status415UnsupportedMediaType),
-	 ProducesResponseType(StatusCodes.Status500InternalServerError)]
+	 ProducesResponseType(StatusCodes.Status500InternalServerError),
+	 Route("api/[controller]")]
 	public class NodaValuesController : Controller
 	{
 		[HttpGet,
