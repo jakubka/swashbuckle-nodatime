@@ -27,6 +27,6 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Models
 		public LocalTime LocalTime => ZonedDateTime.TimeOfDay;
 		public LocalDateTime LocalDateTime => ZonedDateTime.LocalDateTime;
 		public Offset Offset => ZonedDateTime.Offset;
-		public Duration Duraton => Interval.Duration;
+		public Duration Duration => Interval.Duration;
 	}
 }
