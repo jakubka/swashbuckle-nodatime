@@ -25,8 +25,11 @@ module Schemas =
             // deserializing into string will remove quotes
             JsonConvert.DeserializeObject<string>
                 (JsonConvert.SerializeObject(value, serializerSettings))
-        let stringSchema value = 
-            Schema(Type = "string", Example = stringRepresentation value)
+        let stringSchema(value, format : string option) = 
+            Schema(Type = "string", Example = stringRepresentation value, 
+                   Format = match format with
+                            | Some x -> x
+                            | None -> null)
         let timeZone = DateTimeZoneProviders.Tzdb.GetSystemDefault()
         let instant = Instant.FromDateTimeUtc DateTime.UtcNow
         let zonedDateTime = instant.InZone timeZone
@@ -38,23 +41,34 @@ module Schemas =
                         .PlusTicks(TimeSpan.TicksPerMinute)
                         .PlusTicks(TimeSpan.TicksPerSecond)
                         .PlusTicks(TimeSpan.TicksPerMillisecond))
-        {Container.Instant = stringSchema instant;
-         Container.LocalDate = stringSchema zonedDateTime.Date;
-         Container.LocalTime = stringSchema zonedDateTime.TimeOfDay;
-         Container.LocalDateTime = stringSchema zonedDateTime.LocalDateTime;
+        {Container.Instant = stringSchema(instant, Some "date-time");
+         Container.LocalDate = 
+             stringSchema(zonedDateTime.Date, Some "full-date");
+         Container.LocalTime = 
+             stringSchema(zonedDateTime.TimeOfDay, Some "partial-time");
+         Container.LocalDateTime = 
+             stringSchema(zonedDateTime.LocalDateTime, None);
          Container.OffsetDateTime = 
-             stringSchema(instant.WithOffset zonedDateTime.Offset);
-         Container.ZonedDateTime = stringSchema zonedDateTime;
+             stringSchema
+                 (instant.WithOffset zonedDateTime.Offset, Some "date-time");
+         Container.ZonedDateTime = stringSchema(zonedDateTime, None);
          Container.Interval = 
-             Schema(Type = "object", 
-                    Properties = dict [("Start", stringSchema interval.Start);
-                                       ("End", stringSchema interval.End)]);
-         Container.Offset = stringSchema zonedDateTime.Offset;
+             Schema
+                 (Type = "object", 
+                  Properties = dict 
+                                   [("Start", 
+                                     stringSchema
+                                         (interval.Start, Some "date-time"));
+                                    ("End", 
+                                     stringSchema
+                                         (interval.End, Some "date-time"))]);
+         Container.Offset = 
+             stringSchema(zonedDateTime.Offset, Some "time-numoffset");
          Container.Period = 
              stringSchema
                  (Period.Between
                       (zonedDateTime.LocalDateTime, 
                        interval.End.InZone(timeZone).LocalDateTime, 
-                       PeriodUnits.AllUnits));
-         Container.Duration = stringSchema interval.Duration;
-         Container.DateTimeZone = stringSchema timeZone}
+                       PeriodUnits.AllUnits), None);
+         Container.Duration = stringSchema(interval.Duration, None);
+         Container.DateTimeZone = stringSchema(timeZone, None)}
