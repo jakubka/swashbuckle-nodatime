@@ -35,11 +35,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 			app
 				.UseStaticFiles()
 				.UseSwagger()
-				.UseSwaggerUI(o =>
-				{
-					o.SwaggerEndpoint("/swagger/v1/swagger.json", Title);
-					o.ValidatorUrl(null);
-				})
+				.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", Title))
 				.UseMvc();
 		}
 

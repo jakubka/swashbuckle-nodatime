@@ -16,6 +16,7 @@
     <PackageTags>swagger;rest;swashbuckle;nodatime</PackageTags>
     <RepositoryUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

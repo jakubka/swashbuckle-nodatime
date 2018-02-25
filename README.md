@@ -28,6 +28,8 @@ Install-Package Swashbuckle.NodaTime.AspNetCore
 
 Call `ConfigureForNodaTime` method on swagger configuration when setting up swagger using AddSwaggerGen method.
 
+[Check the example which uses Swashbuckle.AspNetCore version 2.1.0](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/tree/master/example/Web)
+
 ```csharp
 public class Startup
 {
@@ -35,20 +37,12 @@ public class Startup
   {
     // This example is using JSON.NETs default settings function with some sample overrides
     // You may also pass the settings object directly into the ConfigureForNodaTime function
-    JsonConvert.DefaultSettings = () =>
+    JsonConvert.DefaultSettings = () => new JsonSerializerSettings
     {
-      var settings = new JsonSerializerSettings
-      {
-        ContractResolver = new CamelCasePropertyNamesContractResolver(),
-        Converters =
-        {
-          new StringEnumConverter()
-        },
-        NullValueHandling = NullValueHandling.Ignore
-      };
-      settings.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
-      return settings;
-    }
+      ContractResolver = new CamelCasePropertyNamesContractResolver(),
+      Converters = { new StringEnumConverter() },
+      NullValueHandling = NullValueHandling.Ignore
+    }.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
 
     services.AddSwaggerGen(c =>
     {

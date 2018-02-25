@@ -8,3 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial version released forked from https://github.com/jakubka/swashbuckle-nodatime
 	Supports NodaTime on Swashbuckle.AspNetCore on .NET 4.5.1 and .NET Standard 1.6 (or higher)
+
+## [1.0.1] - 2018-02-24
+### Changed
+- Sample schema now pulls in users local time zone rather than defaulting to America/New_York
+- Tested against the 2.1.0 release of Swashbuckle.AspNetCore
