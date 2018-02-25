@@ -10,7 +10,7 @@ open Swashbuckle.NodaTime.AspNetCore.Schemas
 module internal Config = 
     let Configure(config : SwaggerGenOptions, 
                   serializerSettings : JsonSerializerSettings) = 
-        let schemas = serializerSettings |> Schemas.Create
+        let schemas = SchemaCreator(serializerSettings).Create()
         config.MapType<Instant>(fun () -> schemas.Instant)
         config.MapType<LocalDate>(fun () -> schemas.LocalDate)
         config.MapType<LocalTime>(fun () -> schemas.LocalTime)

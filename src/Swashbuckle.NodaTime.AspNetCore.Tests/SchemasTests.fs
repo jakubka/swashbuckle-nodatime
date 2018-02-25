@@ -4,7 +4,7 @@ open Newtonsoft.Json
 open NodaTime
 open NodaTime.Serialization.JsonNet
 open Swashbuckle.AspNetCore.Swagger
-open Swashbuckle.NodaTime.AspNetCore
+open Swashbuckle.NodaTime.AspNetCore.Schemas
 open Xunit
 
 module SchemasTests = 
@@ -19,7 +19,7 @@ module SchemasTests =
         |> deserialize<'T>
         |> ignore
     
-    let private schemas = serializerSettings |> Schemas.Create
+    let private schemas = SchemaCreator(serializerSettings).Create()
     
     [<Fact>]
     let private ``Instant schema example should be deserializable``() = 
@@ -107,7 +107,5 @@ module SchemasTests =
     
     [<Fact>] // make sure scalars do have format set correctly
     let private ``Interval schema start & end formats should be date-time``() = 
-        Assert.Equal
-            ("date-time", schemas.Interval.Properties.Item("Start").Format)
-        Assert.Equal
-            ("date-time", schemas.Interval.Properties.Item("End").Format)
+        Assert.Equal("date-time", schemas.Interval.Properties.["Start"].Format)
+        Assert.Equal("date-time", schemas.Interval.Properties.["End"].Format)

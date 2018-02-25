@@ -1,5 +1,6 @@
 ﻿using System;
 using NodaTime;
+using NodaTime.TimeZones;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Models
 {
@@ -7,7 +8,14 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Models
 	{
 		public NodaValue()
 		{
-			DateTimeZone = DateTimeZoneProviders.Tzdb.GetSystemDefault();
+			try
+			{
+				DateTimeZone = DateTimeZoneProviders.Tzdb.GetSystemDefault();
+			}
+			catch (DateTimeZoneNotFoundException)
+			{
+				DateTimeZone = DateTimeZoneProviders.Tzdb["America/New_York"];
+			}
 			Instant = Instant.FromDateTimeUtc(DateTime.UtcNow);
 			ZonedDateTime = Instant.InZone(DateTimeZone);
 			OffsetDateTime = Instant.WithOffset(ZonedDateTime.Offset);
