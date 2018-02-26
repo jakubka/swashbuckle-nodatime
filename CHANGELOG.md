@@ -23,7 +23,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - Offset: time-numoffset (UTC offset serializes as "+00" and not "Z")
   - OffsetDateTime: full-date
 
-## [1.1.1] - 2018-02-25
+## [1.1.1] - 2018-02-25 
 ### Changed
 - Sample schema now attempts to use users local timezone but if not found safely falls back to America/New_York
 - Fixed the access control on the API to only expose the two configuration extension methods everything is internal
+
+## [1.1.2] - 2018-02-26
+## Changed
+- Something went wrong with the nuget.org upload it's still validating the package some 13+ hours later sorry for the version spam this should be the final release for a good long while I have fixed everything I wanted to fix this round
