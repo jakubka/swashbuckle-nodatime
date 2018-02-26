@@ -17,11 +17,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.1.0] - 2018-02-25
 ### Added
 - Format now matches RFC3339 types when possible https://www.ietf.org/rfc/rfc3339.txt
-  Instant: date-time
-  LocalDate: full-date
-  LocalTime: partial-time (Partial due to lack of offset)
-  Offset: time-numoffset (UTC offset serializes as "+00" and not "Z")
-  OffsetDateTime: full-date
+  - Instant: date-time
+  - LocalDate: full-date
+  - LocalTime: partial-time (Partial due to lack of offset)
+  - Offset: time-numoffset (UTC offset serializes as "+00" and not "Z")
+  - OffsetDateTime: full-date
 
 ## [1.1.1] - 2018-02-25
 ### Changed
