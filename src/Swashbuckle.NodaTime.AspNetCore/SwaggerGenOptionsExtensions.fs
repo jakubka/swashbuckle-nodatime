@@ -7,9 +7,11 @@ open NodaTime
 open Swashbuckle.AspNetCore.SwaggerGen
 open Swashbuckle.NodaTime.AspNetCore.Schemas
 
-module internal Config = 
-    let Configure(config : SwaggerGenOptions, 
-                  serializerSettings : JsonSerializerSettings) = 
+[<AutoOpen; Extension>]
+type SwaggerGenOptionsExtensions = 
+    [<Extension>]
+    static member ConfigureForNodaTime(config : SwaggerGenOptions, 
+                                       serializerSettings : JsonSerializerSettings) = 
         let schemas = SchemaCreator(serializerSettings).Create()
         config.MapType<Instant>(fun () -> schemas.Instant)
         config.MapType<LocalDate>(fun () -> schemas.LocalDate)
@@ -33,15 +35,6 @@ module internal Config =
         config.MapType<Nullable<Offset>>(fun () -> schemas.Offset)
         config.MapType<Nullable<Duration>>(fun () -> schemas.Duration)
 
-[<AutoOpen>]
-[<Extension>]
-type SwaggerGenOptionsExtensions = 
-    
     [<Extension>]
     static member ConfigureForNodaTime(config : SwaggerGenOptions) = 
-        Config.Configure(config, JsonConvert.DefaultSettings.Invoke())
-    
-    [<Extension>]
-    static member ConfigureForNodaTime(config : SwaggerGenOptions, 
-                                       serializerSettings : JsonSerializerSettings) = 
-        Config.Configure(config, serializerSettings)
+        SwaggerGenOptionsExtensions.ConfigureForNodaTime(config, JsonConvert.DefaultSettings.Invoke())

@@ -6,7 +6,7 @@ open NodaTime
 open NodaTime.TimeZones
 open Swashbuckle.AspNetCore.Swagger
 
-module Schemas = 
+module internal Schemas = 
     type Container = 
         {Instant : Schema;
          LocalDate : Schema;
@@ -20,14 +20,15 @@ module Schemas =
          Duration : Schema;
          DateTimeZone : Schema}
     
-    type SchemaCreator(serializerSettings : JsonSerializerSettings) = 
+    type SchemaCreator(?serializerSettings : JsonSerializerSettings) = 
+        let settings = defaultArg serializerSettings (JsonConvert.DefaultSettings.Invoke())
         // F# won't allow optional parameters on a let binding
         // So made a type to have a private method declared
         member private __.StringSchema(value, ?format) = 
             Schema(Type = "string", 
                    Example = JsonConvert.DeserializeObject<string>
                                  (JsonConvert.SerializeObject
-                                      (value, serializerSettings)),
+                                      (value, settings)),
                    Format = match format with
                             | Some x -> x
                             | None -> null)

@@ -16,12 +16,13 @@
     <PackageTags>swagger;rest;swashbuckle;nodatime</PackageTags>
     <RepositoryUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Schemas.fs" />
-    <Compile Include="SwaggerDocsConfigExtensions.fs" />
+    <Compile Include="SwaggerGenOptionsExtensions.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -22,3 +22,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 	LocalTime: partial-time (Partial due to lack of offset)
 	Offset: time-numoffset (UTC offset serializes as "+00" and not "Z")
 	OffsetDateTime: full-date
+
+## [1.1.1] - 2018-02-25
+### Changed
+- Sample schema now attempts to use users local timezone but if not found safely falls back to America/New_York
+- Fixed the access control on the API to only expose the two configuration extension methods everything is internal
