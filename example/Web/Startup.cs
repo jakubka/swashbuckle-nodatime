@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,7 +47,11 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 			services
 				.AddSwaggerGen(o =>
 				{
-					o.SwaggerDoc("v1", new Info { Title = Title, Version = "v1" });
+					o.SwaggerDoc("v1", new Info
+					{
+						Title = Title,
+						Version = "v1"
+					});
 					o.OperationFilter<OperationFilter>();
 					o.ConfigureForNodaTime();
 				})

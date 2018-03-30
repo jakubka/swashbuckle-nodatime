@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
@@ -21,14 +21,15 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Filters
 
 		public void Apply(Operation operation, OperationFilterContext context)
 		{
-			operation.Responses.ToList().ForEach(r =>
+			operation.Responses?.ToList().ForEach(r =>
 			{
 				var keyVal = int.Parse(r.Key);
 				if (_descriptionOverrides.ContainsKey(keyVal))
 					r.Value.Description = _descriptionOverrides[keyVal];
 
 			});
-			operation.Parameters.Where(p => p.In == "body").ToList().ForEach(p => { p.Required = true; });
+			operation.Parameters?.Where(p => p.In == "body").ToList()
+				.ForEach(p => { p.Required = true; });
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,8 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers
 	public class NodaValuesController : Controller
 	{
 		[HttpGet,
-		 ProducesResponseType(typeof(IEnumerable<NodaValue>), StatusCodes.Status200OK)]
+		 ProducesResponseType(typeof(IEnumerable<NodaValue>),
+			 StatusCodes.Status200OK)]
 		public IActionResult Get() =>
 			Ok(Enumerable.Range(0, 1).Select(i => new NodaValue()));
 	}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NodaTime;
 using NodaTime.TimeZones;
 
@@ -16,13 +16,19 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Models
 			{
 				DateTimeZone = DateTimeZoneProviders.Tzdb["America/New_York"];
 			}
+
 			Instant = Instant.FromDateTimeUtc(DateTime.UtcNow);
 			ZonedDateTime = Instant.InZone(DateTimeZone);
 			OffsetDateTime = Instant.WithOffset(ZonedDateTime.Offset);
 			Interval = new Interval(Instant,
-				Instant.PlusTicks(TimeSpan.TicksPerDay).PlusTicks(TimeSpan.TicksPerHour).PlusTicks(TimeSpan.TicksPerMinute)
-					.PlusTicks(TimeSpan.TicksPerSecond).PlusTicks(TimeSpan.TicksPerMillisecond));
-			Period = Period.Between(LocalDateTime, Interval.End.InZone(DateTimeZone).LocalDateTime, PeriodUnits.AllUnits);
+				Instant
+					.PlusTicks(TimeSpan.TicksPerDay)
+					.PlusTicks(TimeSpan.TicksPerHour)
+					.PlusTicks(TimeSpan.TicksPerMinute)
+					.PlusTicks(TimeSpan.TicksPerSecond)
+					.PlusTicks(TimeSpan.TicksPerMillisecond));
+			Period = Period.Between(LocalDateTime,
+				Interval.End.InZone(DateTimeZone).LocalDateTime, PeriodUnits.AllUnits);
 		}
 
 		public DateTimeZone DateTimeZone { get; }
