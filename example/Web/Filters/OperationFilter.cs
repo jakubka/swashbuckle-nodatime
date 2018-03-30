@@ -21,11 +21,14 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Filters
 
 		public void Apply(Operation operation, OperationFilterContext context)
 		{
-			_descriptionOverrides.ToList().ForEach(o =>
+			operation.Responses.ToList().ForEach(r =>
 			{
-				if (operation.Responses.ContainsKey(o.Key.ToString()))
-					operation.Responses[o.Key.ToString()].Description = o.Value;
+				var keyVal = int.Parse(r.Key);
+				if (_descriptionOverrides.ContainsKey(keyVal))
+					r.Value.Description = _descriptionOverrides[keyVal];
+
 			});
+			operation.Parameters.Where(p => p.In == "body").ToList().ForEach(p => { p.Required = true; });
 		}
 	}
 }
