@@ -6,11 +6,11 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 {
 	internal class Program
 	{
-		private static async Task Main(string[] args) => await WebHost
-			.CreateDefaultBuilder(args)
-			.UseSockets()
-			.UseStartup<Startup>()
-			.Build()
-			.RunAsync();
+		private static async Task Main(string[] args) =>
+			await WebHost
+				.CreateDefaultBuilder(args)
+				.UseStartup<Startup>()
+				.Build()
+				.RunAsync();
 	}
 }

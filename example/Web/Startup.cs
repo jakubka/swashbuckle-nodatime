@@ -24,7 +24,8 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 			{
 				ContractResolver = new CamelCasePropertyNamesContractResolver(),
 				Converters = { new StringEnumConverter() },
-				NullValueHandling = NullValueHandling.Ignore
+				NullValueHandling = NullValueHandling.Ignore,
+				Formatting = Formatting.Indented
 			}.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
 		}
 
