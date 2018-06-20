@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -20,6 +21,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 		public Startup(IHostingEnvironment hostingEnvironment)
 		{
 			_env = hostingEnvironment;
+			
 			JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 			{
 				ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -34,7 +36,11 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 		{
 			if (_env.IsDevelopment())
 				app.UseDeveloperExceptionPage();
+			else
+				app.UseHsts();
+
 			app
+				.UseHttpsRedirection()
 				.UseStaticFiles()
 				.UseSwagger()
 				.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", Title))
@@ -46,6 +52,18 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
 			services
+				.AddHsts(options =>
+				{
+					options.Preload = true;
+					options.IncludeSubDomains = true;
+					// Set TimeSpan to two years https://hstspreload.org/
+					options.MaxAge = TimeSpan.FromDays(2 * 365);
+				})
+				.AddHttpsRedirection(o =>
+				{
+					o.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+					o.HttpsPort = 44370;
+				})
 				.AddSwaggerGen(o =>
 				{
 					o.SwaggerDoc("v1", new Info
@@ -54,7 +72,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 						Version = "v1"
 					});
 					o.OperationFilter<OperationFilter>();
-					o.ConfigureForNodaTime();
+					o.ConfigureForNodaTime(); //Note: you can pass JsonSerializerSettings in directly here I just leverage JsonConvert.DefaultSettings which is what gets called when no settings are passed
 				})
 				.AddMvcCore()
 				.AddApiExplorer()

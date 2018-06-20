@@ -3,8 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:28128",
-      "sslPort": 44370
+      "applicationUrl": "https://localhost:44370"
     }
   },
   "profiles": {
@@ -18,7 +17,7 @@
     "Swashbuckle.NodaTime.AspNetCore.Example.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5000",
+      "applicationUrl": "https://localhost:44370",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
