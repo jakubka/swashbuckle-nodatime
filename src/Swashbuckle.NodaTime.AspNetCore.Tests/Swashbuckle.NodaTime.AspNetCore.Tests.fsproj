@@ -9,10 +9,7 @@
 
   <ItemGroup>
     <Compile Include="SchemasTests.fs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' != 'net452'">
-    <Compile Include="Program.fs" />
+    <Compile Include="Program.fs" Condition="'$(TargetFramework)' != 'net452'" />
   </ItemGroup>
 
   <ItemGroup>
