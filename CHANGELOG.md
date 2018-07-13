@@ -31,3 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.1.2] - 2018-02-26
 ## Changed
 - Something went wrong with the nuget.org upload it's still validating the package some 13+ hours later sorry for the version spam this should be the final release for a good long while I have fixed everything I wanted to fix this round
+
+## [1.1.3] - 2018-07-26
+## Changed
+- Fixed NullReferenceException based on the contribution of [Aleksander Spro](https://github.com/projecteon)
