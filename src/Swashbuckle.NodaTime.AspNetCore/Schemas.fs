@@ -19,11 +19,12 @@ module internal Schemas =
          Period : Schema;
          Duration : Schema;
          DateTimeZone : Schema}
-    
+
     type SchemaCreator(?serializerSettings : JsonSerializerSettings) =
+        let defaultSerializer = match JsonConvert.DefaultSettings with null -> null | _ -> JsonConvert.DefaultSettings.Invoke()
         let settings =
-            defaultArg serializerSettings (JsonConvert.DefaultSettings.Invoke())
-        
+            defaultArg serializerSettings defaultSerializer
+
         // F# won't allow optional parameters on a let binding
         // So made a type to have a private method declared
         member private __.StringSchema(value, ?format) =
