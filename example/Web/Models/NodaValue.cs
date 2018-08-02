@@ -17,7 +17,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Models
 				DateTimeZone = DateTimeZoneProviders.Tzdb["America/New_York"];
 			}
 
-			Instant = Instant.FromDateTimeUtc(DateTime.UtcNow);
+			Instant = SystemClock.Instance.GetCurrentInstant();
 			ZonedDateTime = Instant.InZone(DateTimeZone);
 			OffsetDateTime = Instant.WithOffset(ZonedDateTime.Offset);
 			Interval = new Interval(Instant,

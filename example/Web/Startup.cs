@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -42,7 +44,11 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 			app
 				.UseHttpsRedirection()
 				.UseStaticFiles()
-				.UseSwagger()
+				.UseSwagger(o => o.PreSerializeFilters.Add((swaggerDoc, httpRequest) =>
+				{
+					swaggerDoc.Host = httpRequest.Host.Value;
+					swaggerDoc.Schemes = new List<string> { httpRequest.Scheme };
+				}))
 				.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", Title))
 				.UseMvc();
 		}
@@ -52,6 +58,24 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
 			services
+				.Configure<ApiBehaviorOptions>(o =>
+				{
+					o.InvalidModelStateResponseFactory = context =>
+					{
+						return new BadRequestObjectResult(
+							new ValidationProblemDetails(context.ModelState)
+							{
+								Instance = context.HttpContext.Request.Path,
+								Status = StatusCodes.Status400BadRequest,
+								// Not sure what to put here just yet so send them to the swagger endpoint
+								Type = $"{context.HttpContext.Request.Scheme}://{context.HttpContext.Request.Host}/swagger",
+								Detail = "Please refer to the errors property for additional details."
+							})
+						{
+							ContentTypes = { "application/problem+json" }
+						};
+					};
+				})
 				.AddHsts(options =>
 				{
 					options.Preload = true;

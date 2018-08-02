@@ -9,6 +9,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 		private static async Task Main(string[] args) =>
 			await WebHost
 				.CreateDefaultBuilder(args)
+				.UseKestrel(o => o.AddServerHeader = false)
 				.UseStartup<Startup>()
 				.Build()
 				.RunAsync();
