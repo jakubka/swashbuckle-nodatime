@@ -29,13 +29,12 @@ type SwaggerGenOptionsExtensions =
     config.MapType<Nullable<LocalDate>>(fun () -> schemas.LocalDate)
     config.MapType<Nullable<LocalTime>>(fun () -> schemas.LocalTime)
     config.MapType<Nullable<LocalDateTime>>(fun () -> schemas.LocalDateTime)
-    config.MapType<Nullable<OffsetDateTime>>
-      (fun () -> schemas.OffsetDateTime)
+    config.MapType<Nullable<OffsetDateTime>>(fun () -> schemas.OffsetDateTime)
     config.MapType<Nullable<ZonedDateTime>>(fun () -> schemas.ZonedDateTime)
     config.MapType<Nullable<Interval>>(fun () -> schemas.Interval)
     config.MapType<Nullable<Offset>>(fun () -> schemas.Offset)
     config.MapType<Nullable<Duration>>(fun () -> schemas.Duration)
-  
+
   [<Extension>]
   static member ConfigureForNodaTime(config : SwaggerGenOptions) =
     SwaggerGenOptionsExtensions.ConfigureForNodaTime
