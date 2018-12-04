@@ -35,3 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.1.3] - 2018-07-26
 ## Changed
 - Fixed NullReferenceException based on the contribution of [Aleksander Spro](https://github.com/projecteon)
+
+## [1.2.0] - 2018-12-04
+## Changed
+- Locked the 1.x dependency on Swashbuckle.AspNetCore to < 4.0 as 4.0 has breaking changes on startup will be releasing 2.0 to target 4.0 but we will lose net45 and netstandard1.6 in the process
