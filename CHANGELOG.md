@@ -38,4 +38,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.2.0] - 2018-12-04
 ## Changed
-- Locked the 1.x dependency on Swashbuckle.AspNetCore to < 4.0 as 4.0 has breaking changes on startup will be releasing 2.0 to target 4.0 but we will lose net45 and netstandard1.6 in the process
+- Locked the 1.x dependency on Swashbuckle.AspNetCore to < 4.0 as 4.0 has breaking changes on startup will be releasing 2.0 to target 4.0 but we will lose net451 and netstandard1.6 in the process
+
+## [2.0.0] - 2018-12-04
+## Changed
+- Upgraded to Swashbuckle.AspNetCore.SwaggerGen 4.0.1 but lost support for net451 and netstandard1.6 so if you are not on netstandard2.0 already this is a breaking change you must omit
+- Note that Swashbuckle.AspNetCore.SwaggerGen v5 beta has moved to using Microsoft.OpenApi under the covers so we will be going to v3 fairly soon

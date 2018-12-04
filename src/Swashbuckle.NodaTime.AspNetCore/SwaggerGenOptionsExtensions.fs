@@ -2,6 +2,7 @@ namespace Swashbuckle.NodaTime.AspNetCore
 
 open System
 open System.Runtime.CompilerServices
+open Microsoft.Extensions.DependencyInjection // This was not a good change it looks like it was fixed in v5 beta but v5 will be a breaking change anyway for this library so we will release 3.x then
 open Newtonsoft.Json
 open NodaTime
 open Swashbuckle.AspNetCore.SwaggerGen
