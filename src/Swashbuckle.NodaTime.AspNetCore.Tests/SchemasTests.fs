@@ -1,9 +1,10 @@
 namespace Swashbuckle.NodaTime.AspNetCore.Tests
 
+open Microsoft.OpenApi.Any
+open Microsoft.OpenApi.Models
 open Newtonsoft.Json
 open NodaTime
 open NodaTime.Serialization.JsonNet
-open Swashbuckle.AspNetCore.Swagger
 open Swashbuckle.NodaTime.AspNetCore.Schemas
 open Xunit
 
@@ -13,11 +14,13 @@ module SchemasTests =
     JsonSerializerSettings().ConfigureForNodaTime DateTimeZoneProviders.Tzdb
 
   // Helper function for example deserialization
-  let private tryDeserializeExample<'T>(schema : Schema) =
-    schema.Example
-    |> JsonConvert.SerializeObject
-    |> JsonConvert.DeserializeObject<'T>
-    |> ignore
+  // Note: OpenApiSchema.Example is a crappy interface cast to concrete type
+  let private tryDeserializeExample<'T>(schema : OpenApiSchema) =
+    let value = schema.Example :?> OpenApiString
+    value.Value
+      |> JsonConvert.SerializeObject
+      |> JsonConvert.DeserializeObject<'T>
+      |> ignore
 
   // Container gets re-used across all test methods
   let private schemas = SchemaCreator().Create()

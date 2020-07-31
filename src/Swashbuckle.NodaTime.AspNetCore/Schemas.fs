@@ -1,24 +1,25 @@
 namespace Swashbuckle.NodaTime.AspNetCore
 
 open System
+open Microsoft.OpenApi.Any
+open Microsoft.OpenApi.Models
 open Newtonsoft.Json
 open NodaTime
 open NodaTime.TimeZones
-open Swashbuckle.AspNetCore.Swagger
 
 module internal Schemas =
   type Container =
-    {Instant : Schema;
-     LocalDate : Schema;
-     LocalTime : Schema;
-     LocalDateTime : Schema;
-     OffsetDateTime : Schema;
-     ZonedDateTime : Schema;
-     Interval : Schema;
-     Offset : Schema;
-     Period : Schema;
-     Duration : Schema;
-     DateTimeZone : Schema}
+    {Instant : OpenApiSchema;
+     LocalDate : OpenApiSchema;
+     LocalTime : OpenApiSchema;
+     LocalDateTime : OpenApiSchema;
+     OffsetDateTime : OpenApiSchema;
+     ZonedDateTime : OpenApiSchema;
+     Interval : OpenApiSchema;
+     Offset : OpenApiSchema;
+     Period : OpenApiSchema;
+     Duration : OpenApiSchema;
+     DateTimeZone : OpenApiSchema}
 
   type SchemaCreator(?serializerSettings : JsonSerializerSettings) =
 
@@ -32,9 +33,8 @@ module internal Schemas =
     // F# won't allow optional parameters on a let binding
     // So made a type to have a private method declared
     member private __.StringSchema(value, ?format) =
-      Schema(Type = "string",
-             Example = JsonConvert.DeserializeObject<string>
-                         (JsonConvert.SerializeObject(value, settings)),
+      OpenApiSchema(Type = "string",
+             Example = OpenApiString(JsonConvert.SerializeObject(value, settings) |> JsonConvert.DeserializeObject<string>),
              Format = match format with
                       | Some x -> x
                       | None -> null)
@@ -65,7 +65,7 @@ module internal Schemas =
          __.StringSchema(instant.WithOffset zonedDateTime.Offset, "date-time");
        Container.ZonedDateTime = __.StringSchema zonedDateTime;
        Container.Interval =
-         Schema
+         OpenApiSchema
            (Type = "object",
             Properties = dict
                            [("Start",

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Filters
@@ -23,17 +23,12 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Filters
 				[StatusCodes.Status504GatewayTimeout] = "Gateway Timeout"
 			}.ToImmutableDictionary();
 
-		public void Apply(Operation operation, OperationFilterContext context)
-		{
+		public void Apply(OpenApiOperation operation, OperationFilterContext context) =>
 			operation.Responses?.ToList().ForEach(r =>
 			{
 				var keyVal = int.Parse(r.Key);
 				if (_descriptionOverrides.ContainsKey(keyVal))
 					r.Value.Description = _descriptionOverrides[keyVal];
-
 			});
-			operation.Parameters?.Where(p => p.In == "body").ToList()
-				.ForEach(p => { p.Required = true; });
-		}
 	}
 }

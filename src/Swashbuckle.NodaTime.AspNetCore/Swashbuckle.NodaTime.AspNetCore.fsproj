@@ -1,22 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.6;net461;net451</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
     <Title>Swashbuckle.NodaTime.AspNetCore</Title>
     <Authors>Jakub Kadlubiec, Brian Buvinghausen</Authors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Configure Swashbuckle.AspNetCore to generate correct documentation for NodaTime types. Documentation uses JSON Schema's 'example' attribute to show the resulting value.</Description>
     <Summary>Go to https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/issues to report bugs, request features, etc. forked from https://github.com/jakubka/swashbuckle-nodatime </Summary>
-    <Copyright>Copyright © 2018 Brian Buvinghausen</Copyright>
-    <PackageReleaseNotes>See https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/CHANGELOG.md</PackageReleaseNotes>
-    <PackageLicenseUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <Copyright>Copyright © 2020 Brian Buvinghausen</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/README.md</PackageProjectUrl>
     <PackageTags>swagger;rest;swashbuckle;nodatime</PackageTags>
     <RepositoryUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.3.0</Version>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,10 +23,15 @@
     <Compile Include="Schemas.fs" />
     <Compile Include="SwaggerGenOptionsExtensions.fs" />
   </ItemGroup>
+  
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="[1.0,4.0)" Condition="'$(TargetFramework)' == 'netstandard1.6' OR '$(TargetFramework)' == 'net451'" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.0.0" Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="NodaTime.Serialization.JsonNet" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
   </ItemGroup>
 
 </Project>
