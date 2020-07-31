@@ -28,7 +28,7 @@ Install-Package Swashbuckle.NodaTime.AspNetCore
 
 Call `ConfigureForNodaTime` method on swagger configuration when setting up swagger using AddSwaggerGen method.
 
-[Check the example which uses Swashbuckle.AspNetCore version 4.0.1](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/tree/master/example/Web)
+[Check the example which uses Swashbuckle.AspNetCore version 5.0.0](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/example/Web/Program.cs)
 
 ```csharp
 public class Startup
@@ -46,7 +46,7 @@ public class Startup
 
     services.AddSwaggerGen(c =>
     {
-      c.SwaggerDoc("v1", new Info
+      c.SwaggerDoc("v1", new OpenApiInfo
       {
         Title = "My NodaTime API",
         Version = "v1"
