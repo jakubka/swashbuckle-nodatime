@@ -57,4 +57,4 @@ public class Startup
 }
 ```
 
-![Continuous Integration](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/workflows/Continuous%20Integration/badge.svg?branch=master)[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)
+![Continuous Integration](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/workflows/Continuous%20Integration/badge.svg)[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)
