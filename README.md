@@ -1,5 +1,5 @@
 # Swashbuckle.NodaTime.AspNetCore
-![Continuous Integration](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/workflows/Continuous%20Integration/badge.svg)[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)
+![Continuous Integration](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/workflows/Continuous%20Integration/badge.svg)[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/LICENSE.txt)
 
 *Easily configure [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) to generate correct documentation for [NodaTime](https://github.com/nodatime/nodatime) types.*
 
