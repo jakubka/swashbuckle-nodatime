@@ -1,4 +1,5 @@
 # Swashbuckle.NodaTime.AspNetCore
+![Continuous Integration](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/workflows/Continuous%20Integration/badge.svg)[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)
 
 *Easily configure [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) to generate correct documentation for [NodaTime](https://github.com/nodatime/nodatime) types.*
 
@@ -56,5 +57,3 @@ public class Startup
   }
 }
 ```
-
-![Continuous Integration](https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/workflows/Continuous%20Integration/badge.svg)[![NuGet](https://img.shields.io/nuget/v/Swashbuckle.NodaTime.AspNetCore.svg)](https://www.nuget.org/packages/Swashbuckle.NodaTime.AspNetCore/)
