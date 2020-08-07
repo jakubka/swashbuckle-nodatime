@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Swashbuckle.NodaTime.AspNetCore", "src\Swashbuckle.NodaTime.AspNetCore\Swashbuckle.NodaTime.AspNetCore.fsproj", "{99DFE05C-BF2F-4CE7-A8C8-D901449AECCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "example\Web\Web.csproj", "{72DBCB63-F95B-4A7F-9F2D-264332334E30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swashbuckle.NodaTime.AspNetCore.Web", "example\Web\Swashbuckle.NodaTime.AspNetCore.Web.csproj", "{72DBCB63-F95B-4A7F-9F2D-264332334E30}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Swashbuckle.NodaTime.AspNetCore.Tests", "test\Swashbuckle.NodaTime.AspNetCore.Tests\Swashbuckle.NodaTime.AspNetCore.Tests.fsproj", "{90813A35-D56F-4A02-9A04-10E0BD005B2A}"
 EndProject
