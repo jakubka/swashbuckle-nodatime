@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +16,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 {
 	internal class Program
 	{
-		private const string _title = "Swashbuckle.NodaTime.AspNetCore Demo";
+		private const string Title = "Swashbuckle.NodaTime.AspNetCore Demo";
 
 		private static Task Main(string[] args)
 		{
@@ -39,7 +38,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 						{
 							o.SwaggerDoc("v1", new OpenApiInfo
 							{
-								Title = _title,
+								Title = Title,
 								Version = "v1"
 							});
 							o.OperationFilter<OperationFilter>();
@@ -59,11 +58,8 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web
 					{
 						app
 							.UseStaticFiles()
-							.UseSwagger(o => o.PreSerializeFilters.Add((apiDoc, httpReq) =>
-							{
-								apiDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}" } };
-							}))
-							.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", _title))
+							.UseSwagger(o => o.PreSerializeFilters.Add((apiDoc, httpReq) => apiDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}" } }))
+							.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", Title))
 							.UseAuthentication()
 							.UseRouting()
 							.UseAuthorization()
