@@ -1,0 +1,32 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET 5.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.*
+    - name: Setup .NET Core 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.*
+    - name: Setup .NET Core 2.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.1.*
+      env:
+        DOTNET_NOLOGO: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build -v n /p:CollectCoverage=true /p:CoverletOutput='../../' /p:CoverletOutputFormat=opencover /p:Threshold=37 /p:SkipAutoProps=true /p:UseSourceLink=true

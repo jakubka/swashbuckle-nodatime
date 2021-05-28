@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Swashbuckle.NodaTime.AspNetCore</Title>
+    <Description>Configure Swashbuckle.AspNetCore to generate correct documentation for NodaTime types. Documentation uses JSON Schema's 'example' attribute to show the resulting value.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Schemas.fs" />
+    <Compile Include="SwaggerGenOptionsExtensions.fs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="NodaTime.Serialization.JsonNet" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

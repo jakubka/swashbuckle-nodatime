@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Swashbuckle.NodaTime.AspNetCore\Swashbuckle.NodaTime.AspNetCore.fsproj" />
+  </ItemGroup>
+
+</Project>
