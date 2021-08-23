@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.*" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.*" />
   </ItemGroup>
 
   <ItemGroup>
