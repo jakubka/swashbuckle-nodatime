@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
     <Authors>Jakub Kadlubiec, Brian Buvinghausen</Authors>
     <Company>Buvinghausen Solutions</Company>
     <Summary>Go to https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/issues to report bugs, request features, etc. forked from https://github.com/jakubka/swashbuckle-nodatime</Summary>
