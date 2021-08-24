@@ -46,7 +46,7 @@ module internal Schemas =
         with :? DateTimeZoneNotFoundException ->
           DateTimeZoneProviders.Tzdb.["America/New_York"]
 
-      let instant = SystemClock.Instance.GetCurrentInstant()
+      let instant = Instant.FromUnixTimeTicks(15759724104663180L)
       let zonedDateTime = instant.InZone dateTimeZone
       let interval =
         Interval
