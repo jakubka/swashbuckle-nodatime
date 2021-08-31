@@ -7,7 +7,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Filters
 {
-	internal class OperationFilter : IOperationFilter
+	internal sealed class OperationFilter : IOperationFilter
 	{
 		private readonly IImmutableDictionary<int, string> _descriptionOverrides =
 			new Dictionary<int, string>

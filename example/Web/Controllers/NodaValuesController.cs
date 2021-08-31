@@ -9,7 +9,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers
 	 Consumes("application/json"),
 	 Produces("application/json"),
 	 Route("api/[controller]")]
-	public class NodaValuesController : Controller
+	public sealed class NodaValuesController : ControllerBase
 	{
 		[HttpGet]
 		public ActionResult<IEnumerable<NodaValue>> Get() =>

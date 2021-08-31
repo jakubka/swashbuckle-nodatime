@@ -4,7 +4,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers
 {
 	[ApiExplorerSettings(IgnoreApi = true),
 	 Route("")]
-	public class DefaultController : Controller
+	public sealed class DefaultController : ControllerBase
 	{
 		[HttpGet]
 		public IActionResult Get() => Redirect("swagger");

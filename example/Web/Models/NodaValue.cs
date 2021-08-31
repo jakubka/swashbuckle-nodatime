@@ -4,7 +4,7 @@ using NodaTime.TimeZones;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Models
 {
-	public class NodaValue
+	public sealed class NodaValue
 	{
 		public NodaValue()
 		{
