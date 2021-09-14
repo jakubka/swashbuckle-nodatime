@@ -3,10 +3,7 @@ using Swashbuckle.NodaTime.AspNetCore.Web.Models;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers;
 
-[ApiController,
-	Consumes("application/json"),
-	Produces("application/json"),
-	Route("api/[controller]")]
+[ApiController, Consumes("application/json"), Produces("application/json"), Route("api/[controller]")]
 public sealed class NodaValuesController : ControllerBase
 {
 	[HttpGet]

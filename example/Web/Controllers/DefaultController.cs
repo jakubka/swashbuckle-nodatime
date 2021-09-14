@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers;
 
-[ApiExplorerSettings(IgnoreApi = true),
-	Route("")]
+[ApiExplorerSettings(IgnoreApi = true), Route("")]
 public sealed class DefaultController : ControllerBase
 {
 	[HttpGet]
