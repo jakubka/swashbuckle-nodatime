@@ -8,4 +8,8 @@
     <ProjectReference Include="..\..\src\Swashbuckle.NodaTime.AspNetCore\Swashbuckle.NodaTime.AspNetCore.fsproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="5.0.2" />
+  </ItemGroup>
+
 </Project>
