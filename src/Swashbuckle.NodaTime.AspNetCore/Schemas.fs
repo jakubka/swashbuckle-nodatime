@@ -68,8 +68,7 @@ module internal Schemas =
          OpenApiSchema
            (Type = "object",
             Properties = dict
-                           [("Start",
-                             __.StringSchema(interval.Start, "date-time"));
+                           [("Start", __.StringSchema(interval.Start, "date-time"));
                             ("End", __.StringSchema(interval.End, "date-time"))]);
        Container.Offset =
          __.StringSchema(zonedDateTime.Offset, "time-numoffset");

@@ -4,7 +4,6 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using NodaTime;
 using NodaTime.Serialization.JsonNet;
-using Swashbuckle.NodaTime.AspNetCore;
 using Swashbuckle.NodaTime.AspNetCore.Web.Filters;
 
 JsonConvert.DefaultSettings = () => new JsonSerializerSettings
