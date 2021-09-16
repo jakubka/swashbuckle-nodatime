@@ -1,4 +1,4 @@
-namespace Swashbuckle.NodaTime.AspNetCore
+namespace Microsoft.Extensions.DependencyInjection
 
 open System
 open System.Runtime.CompilerServices
