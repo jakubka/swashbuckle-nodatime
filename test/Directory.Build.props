@@ -11,7 +11,7 @@
     <PackageReference Condition="'$(TargetFramework)' == 'net6.0'" Update="FSharp.Core" Version="6.0.*" />
     <PackageReference Condition="'$(TargetFramework)' == 'net5.0'" Update="FSharp.Core" Version="5.0.*" />
     <PackageReference Condition="'$(TargetFramework)' == 'netcoreapp3.1'" Update="FSharp.Core" Version="4.7.*" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="xunit" Version="2.*" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.*" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
