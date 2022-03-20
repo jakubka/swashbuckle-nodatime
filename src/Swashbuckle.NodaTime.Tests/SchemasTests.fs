@@ -1,33 +1,28 @@
 ﻿namespace Swashbuckle.NodaTime.Tests
 
-open NUnit.Framework
-
-open Swashbuckle.Swagger
-
-open Newtonsoft.Json
-
+open System.Text.Json
+open Microsoft.OpenApi.Models
+open Xunit
 open NodaTime
-open NodaTime.Serialization.JsonNet
-
 open Swashbuckle.NodaTime
 
 module SchemasTests =
 
     let private serializerSettings =
-        JsonSerializerSettings()
+        JsonSerializerOptions()
             .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb)
 
     let private deserialize<'T> json =
-        JsonConvert.DeserializeObject<'T>(json, serializerSettings)
+        JsonSerializer.Deserialize<'T>(json, serializerSettings)
 
-    let private tryDeserializeExample<'T> (schema: Schema) =
-        schema.example
+    let private tryDeserializeExample<'T> (schema: OpenApiSchema) =
+        schema.Example
         |> string
-        |> JsonConvert.SerializeObject
+        |> JsonSerializer.Serialize
         |> deserialize<'T>
         |> ignore
 
-    [<Test>]
+    [<Fact>]
     let ``Examples in schemas should be deserializable`` () =
 
         let schemas =
