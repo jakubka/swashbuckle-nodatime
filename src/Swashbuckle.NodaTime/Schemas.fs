@@ -1,40 +1,47 @@
 ﻿namespace Swashbuckle.NodaTime
 
-open Swashbuckle.Swagger
-
-open Newtonsoft.Json
-
+open System
+open System.Text.Json
+open Microsoft.FSharp.Quotations
+open Microsoft.OpenApi.Any
+open Microsoft.OpenApi.Models
 open NodaTime
 
+//type SchemaExample(value) =
+//    interface IOpenApiAny with
+//        member val AnyType = AnyType.Primitive
+//        member this.Write(writer, specVersion) = new JsonObjectWriter(value)
+//    member val Value = value;
+        
 module Schemas =
 
     type Container =
         {
-            Instant: Schema
-            LocalDate: Schema
-            LocalTime: Schema
-            LocalDateTime: Schema
-            OffsetDateTime: Schema
-            ZonedDateTime: Schema
-            Interval: Schema
-            Offset: Schema
-            Period: Schema
-            Duration: Schema
-            DateTimeZone: Schema
+            Instant: OpenApiSchema
+            LocalDate: OpenApiSchema
+            LocalTime: OpenApiSchema
+            LocalDateTime: OpenApiSchema
+            OffsetDateTime: OpenApiSchema
+            ZonedDateTime: OpenApiSchema
+            Interval: OpenApiSchema
+            Offset: OpenApiSchema
+            Period: OpenApiSchema
+            Duration: OpenApiSchema
+            DateTimeZone: OpenApiSchema
         }
 
-    let Create (serializerSettings: JsonSerializerSettings): Container =
+    let Create (serializerSettings: JsonSerializerOptions): Container =
         let stringRepresentation value =
             // this produces value including quotes, for example: "13:45:13.784"
-            let jsonString = JsonConvert.SerializeObject(value, serializerSettings)
+            let jsonString = JsonSerializer.Serialize(value, serializerSettings)
 
             // deserializing into string will remove quotes
-            JsonConvert.DeserializeObject<string>(jsonString)
+            JsonSerializer.Deserialize<string>(jsonString)
 
         let stringSchema value =
-            Schema(
-                ``type`` = "string",
-                example = stringRepresentation value)
+            OpenApiSchema(
+                Type = "object",
+                Example = OpenApiString(stringRepresentation value))
 
         let instant = Instant.FromUtc(2016, 9, 22, 16, 53)
         let duration = Duration.FromMilliseconds(49513784L)
@@ -50,13 +57,13 @@ module Schemas =
         let period = Period.Between(localDateTime, localDateTime.PlusTicks(duration.BclCompatibleTicks))
 
         let intervalSchema =
-            let properties = System.Collections.Generic.Dictionary<string, Schema>()
+            let properties = System.Collections.Generic.Dictionary<string, OpenApiSchema>()
             properties.Add("Start", stringSchema interval.Start)
             properties.Add("End", stringSchema interval.End)
 
-            Schema(
-                ``type`` = "object",
-                properties = properties)
+            OpenApiSchema(
+                Type = "object",
+                Properties = properties)
 
         {
             Container.Instant = stringSchema instant

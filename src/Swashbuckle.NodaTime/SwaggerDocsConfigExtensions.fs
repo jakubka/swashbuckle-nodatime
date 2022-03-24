@@ -1,24 +1,21 @@
 ﻿namespace Swashbuckle.NodaTime
 
 open System.Runtime.CompilerServices
-
-open Swashbuckle.Application
-
+open System.Text.Json
+open Microsoft.Extensions.DependencyInjection
 open NodaTime
-
-open Newtonsoft.Json
-
 open Schemas
+open Swashbuckle.AspNetCore.SwaggerGen
 
 [<AutoOpen>]
 [<Extension>]
 module SwaggerDocsConfigExtensions =
 
     [<Extension>]
-    let ConfigureForNodaTime (config: SwaggerDocsConfig, serializerSettings: JsonSerializerSettings) =
+    let ConfigureForNodaTime (config: SwaggerGenOptions, serializerSettings: JsonSerializerOptions) =
         let schemas =
             serializerSettings
-            |> Schemas.Create
+            |> Create
 
         config.MapType<Instant>(fun () -> schemas.Instant)
         config.MapType<LocalDate>(fun () -> schemas.LocalDate)
@@ -42,6 +39,6 @@ module SwaggerDocsConfigExtensions =
         config.MapType<System.Nullable<Offset>>(fun () -> schemas.Offset)
         config.MapType<System.Nullable<Duration>>(fun () -> schemas.Duration)
 
-    type SwaggerDocsConfig with
-        member this.ConfigureForNodaTime(serializerSettings: JsonSerializerSettings) =
+    type SwaggerGenOptions with
+        member this.ConfigureForNodaTime(serializerSettings: JsonSerializerOptions) =
             ConfigureForNodaTime(this, serializerSettings)
