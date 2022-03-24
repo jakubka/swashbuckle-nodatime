@@ -1,9 +1,7 @@
 ﻿namespace Swashbuckle.NodaTime.Tests
 
-open System
 open System.Text.Json
 open Microsoft.OpenApi.Any
-open Microsoft.OpenApi.Interfaces
 open Microsoft.OpenApi.Models
 open Xunit
 open NodaTime
