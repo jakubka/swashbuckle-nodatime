@@ -1,10 +1,14 @@
 ﻿namespace Swashbuckle.NodaTime.Tests
 
+open System
 open System.Text.Json
+open Microsoft.OpenApi.Any
+open Microsoft.OpenApi.Interfaces
 open Microsoft.OpenApi.Models
 open Xunit
 open NodaTime
 open Swashbuckle.NodaTime
+open NodaTime.Serialization.SystemTextJson
 
 module SchemasTests =
 
@@ -12,12 +16,13 @@ module SchemasTests =
         JsonSerializerOptions()
             .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb)
 
-    let private deserialize<'T> json =
+    let private deserialize<'T> (json: string) =
         JsonSerializer.Deserialize<'T>(json, serializerSettings)
 
     let private tryDeserializeExample<'T> (schema: OpenApiSchema) =
         schema.Example
-        |> string
+        :?> OpenApiString// Downcast the IOpenApiAny type to OpenApiString so that we can get the value.
+        |> fun (x : OpenApiString) -> x.Value
         |> JsonSerializer.Serialize
         |> deserialize<'T>
         |> ignore

@@ -1,10 +1,18 @@
 ﻿namespace Swashbuckle.NodaTime
 
+open System
 open System.Text.Json
+open Microsoft.FSharp.Quotations
 open Microsoft.OpenApi.Any
 open Microsoft.OpenApi.Models
 open NodaTime
 
+//type SchemaExample(value) =
+//    interface IOpenApiAny with
+//        member val AnyType = AnyType.Primitive
+//        member this.Write(writer, specVersion) = new JsonObjectWriter(value)
+//    member val Value = value;
+        
 module Schemas =
 
     type Container =

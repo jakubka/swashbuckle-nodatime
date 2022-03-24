@@ -15,7 +15,7 @@ module SwaggerDocsConfigExtensions =
     let ConfigureForNodaTime (config: SwaggerGenOptions, serializerSettings: JsonSerializerOptions) =
         let schemas =
             serializerSettings
-            |> Schemas.Create
+            |> Create
 
         config.MapType<Instant>(fun () -> schemas.Instant)
         config.MapType<LocalDate>(fun () -> schemas.LocalDate)
