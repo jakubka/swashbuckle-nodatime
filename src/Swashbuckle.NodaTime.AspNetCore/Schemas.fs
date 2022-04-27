@@ -28,7 +28,7 @@ module internal Schemas =
     NullableOffsetDateTime : OpenApiSchema;
     NullableZonedDateTime : OpenApiSchema;
     NullableOffset : OpenApiSchema;
-    NullablePeriod : OpenApiSchema;
+    NullableInterval : OpenApiSchema;
     NullableDuration : OpenApiSchema;
     NullableDateTimeZone : OpenApiSchema }
 
@@ -98,10 +98,9 @@ module internal Schemas =
         Container.NullableLocalDateTime = __.NullableStringSchema zonedDateTime.LocalDateTime;
         Container.NullableOffsetDateTime = __.NullableStringSchema(instant.WithOffset zonedDateTime.Offset, "date-time");
         Container.NullableZonedDateTime = __.NullableStringSchema zonedDateTime;
+        Container.NullableInterval = OpenApiSchema(Type = "object", Nullable = true, Properties = dict
+          [("Start", __.StringSchema(interval.Start, "date-time"));
+          ("End", __.StringSchema(interval.End, "date-time"))]);
         Container.NullableOffset = __.NullableStringSchema(zonedDateTime.Offset, "time-numoffset");
-        Container.NullablePeriod = __.NullableStringSchema(Period.Between
-          (zonedDateTime.LocalDateTime,
-          interval.End.InZone(dateTimeZone).LocalDateTime,
-          PeriodUnits.AllUnits));
         Container.NullableDuration = __.NullableStringSchema interval.Duration;
         Container.NullableDateTimeZone = __.NullableStringSchema dateTimeZone}
