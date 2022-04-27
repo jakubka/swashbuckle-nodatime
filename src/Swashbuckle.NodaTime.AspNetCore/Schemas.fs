@@ -19,7 +19,18 @@ module internal Schemas =
     Offset : OpenApiSchema;
     Period : OpenApiSchema;
     Duration : OpenApiSchema;
-    DateTimeZone : OpenApiSchema }
+    DateTimeZone : OpenApiSchema;
+
+    NullableInstant : OpenApiSchema;
+    NullableLocalDate : OpenApiSchema;
+    NullableLocalTime : OpenApiSchema;
+    NullableLocalDateTime : OpenApiSchema;
+    NullableOffsetDateTime : OpenApiSchema;
+    NullableZonedDateTime : OpenApiSchema;
+    NullableOffset : OpenApiSchema;
+    NullablePeriod : OpenApiSchema;
+    NullableDuration : OpenApiSchema;
+    NullableDateTimeZone : OpenApiSchema }
 
   type SchemaCreator(?serializerSettings : JsonSerializerSettings) =
     let defaultSerializer =
@@ -37,6 +48,17 @@ module internal Schemas =
         Format = match format with
                  | Some x -> x
                  | None -> null)
+
+    // F# won't allow optional parameters on a let binding
+    // So made a type to have a private method declared
+    member private __.NullableStringSchema(value, ?format) =
+      OpenApiSchema(Type = "string",
+        Example = OpenApiString(JsonConvert.SerializeObject(value, settings) |> JsonConvert.DeserializeObject<string>),
+        Nullable = true,
+        Format = match format with
+                 | Some x -> x
+                 | None -> null)
+
 
     member __.Create() =
       let dateTimeZone =
@@ -67,4 +89,19 @@ module internal Schemas =
           interval.End.InZone(dateTimeZone).LocalDateTime,
           PeriodUnits.AllUnits));
         Container.Duration = __.StringSchema interval.Duration;
-        Container.DateTimeZone = __.StringSchema dateTimeZone }
+        Container.DateTimeZone = __.StringSchema dateTimeZone
+
+
+        Container.NullableInstant = __.NullableStringSchema(instant, "date-time");
+        Container.NullableLocalDate = __.NullableStringSchema(zonedDateTime.Date, "full-date");
+        Container.NullableLocalTime = __.NullableStringSchema(zonedDateTime.TimeOfDay, "partial-time");
+        Container.NullableLocalDateTime = __.NullableStringSchema zonedDateTime.LocalDateTime;
+        Container.NullableOffsetDateTime = __.NullableStringSchema(instant.WithOffset zonedDateTime.Offset, "date-time");
+        Container.NullableZonedDateTime = __.NullableStringSchema zonedDateTime;
+        Container.NullableOffset = __.NullableStringSchema(zonedDateTime.Offset, "time-numoffset");
+        Container.NullablePeriod = __.NullableStringSchema(Period.Between
+          (zonedDateTime.LocalDateTime,
+          interval.End.InZone(dateTimeZone).LocalDateTime,
+          PeriodUnits.AllUnits));
+        Container.NullableDuration = __.NullableStringSchema interval.Duration;
+        Container.NullableDateTimeZone = __.NullableStringSchema dateTimeZone}
