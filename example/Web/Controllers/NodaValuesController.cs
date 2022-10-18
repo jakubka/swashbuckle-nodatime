@@ -8,5 +8,5 @@ public sealed class NodaValuesController : ControllerBase
 {
 	[HttpGet]
 	public ActionResult<IEnumerable<NodaValue>> Get() =>
-		Ok(Enumerable.Range(0, 1).Select(i => new NodaValue()));
+		Ok(Enumerable.Range(0, 1).Select(_ => new NodaValue()));
 }
