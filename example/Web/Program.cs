@@ -15,7 +15,8 @@ JsonConvert.DefaultSettings = () => new JsonSerializerSettings
 }.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSwaggerGen(o =>
+builder.Services
+	.AddSwaggerGen(o =>
 	{
 		o.SwaggerDoc("v1",
 			new OpenApiInfo
@@ -36,18 +37,17 @@ builder.Services.AddSwaggerGen(o =>
 			new List<JsonConverter> { new StringEnumConverter() };
 		options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 		options.SerializerSettings.Formatting = Formatting.Indented;
-		options.SerializerSettings.ConfigureForNodaTime(DateTimeZoneProviders
-			.Tzdb);
+		options.SerializerSettings.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
 	});
 var app = builder.Build();
-app
+_ = app
 	.UseStaticFiles()
 	.UseSwagger(o => o.PreSerializeFilters.Add((apiDoc, httpReq) => apiDoc.Servers = new List<OpenApiServer> { new() { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}" } }))
 	.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", builder.Environment.ApplicationName))
 	.UseAuthentication()
 	.UseRouting()
-	.UseAuthorization()
-	.UseEndpoints(endpoints => endpoints.MapControllers());
+	.UseAuthorization();
+_ = app.MapControllers();
 await app
 	.RunAsync()
 	.ConfigureAwait(false);

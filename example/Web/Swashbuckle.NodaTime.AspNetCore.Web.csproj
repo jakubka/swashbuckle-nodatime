@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
-    <PackageReference Include="FSharp.Core" Version="6.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.*" />
+    <PackageReference Include="FSharp.Core" Version="7.0.0-*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.0-*" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.*" />
   </ItemGroup>
 
