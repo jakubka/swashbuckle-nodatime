@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>preview</LangVersion>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <AnalysisLevel>latest-Recommended</AnalysisLevel>
   </PropertyGroup>
 
 </Project>
