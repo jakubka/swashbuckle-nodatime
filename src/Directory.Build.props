@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'net7.0'" Update="FSharp.Core" Version="7.0.0-*" />
+    <PackageReference Condition="'$(TargetFramework)' == 'net7.0'" Update="FSharp.Core" Version="7.0.*" />
     <PackageReference Condition="'$(TargetFramework)' == 'net6.0'" Update="FSharp.Core" Version="6.0.*" />
     <PackageReference Condition="'$(TargetFramework)' == 'netcoreapp3.1'" Update="FSharp.Core" Version="4.7.*" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.*" PrivateAssets="All" />
