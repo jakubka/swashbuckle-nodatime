@@ -1,9 +1,10 @@
+using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.NodaTime.AspNetCore.Web.Models;
 
 namespace Swashbuckle.NodaTime.AspNetCore.Web.Controllers;
 
-[ApiController, Consumes("application/json"), Produces("application/json"), Route("api/[controller]")]
+[ApiController, Consumes(MediaTypeNames.Application.Json), Produces(MediaTypeNames.Application.Json), Route("api/[controller]")]
 public sealed class NodaValuesController : ControllerBase
 {
 	[HttpGet]
