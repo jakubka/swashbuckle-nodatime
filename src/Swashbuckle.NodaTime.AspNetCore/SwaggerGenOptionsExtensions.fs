@@ -12,15 +12,25 @@ open Swashbuckle.NodaTime.AspNetCore.Schemas
 type SwaggerGenOptionsExtensions =
 
   [<Extension>]
-  static member ConfigureForNodaTime(config : SwaggerGenOptions,
-                                     serializerSettings : JsonSerializerSettings) =
+  static member ConfigureForNodaTime
+    (
+      config: SwaggerGenOptions,
+      serializerSettings: JsonSerializerSettings
+    ) =
     let schemas = SchemaCreator(serializerSettings).Create()
     config.MapType<Nullable<Instant>>(fun () -> schemas.NullableInstant)
     config.MapType<Nullable<LocalDate>>(fun () -> schemas.NullableLocalDate)
     config.MapType<Nullable<LocalTime>>(fun () -> schemas.NullableLocalTime)
-    config.MapType<Nullable<LocalDateTime>>(fun () -> schemas.NullableLocalDateTime)
-    config.MapType<Nullable<OffsetDateTime>>(fun () -> schemas.NullableOffsetDateTime)
-    config.MapType<Nullable<ZonedDateTime>>(fun () -> schemas.NullableZonedDateTime)
+
+    config.MapType<Nullable<LocalDateTime>>(fun () ->
+      schemas.NullableLocalDateTime)
+
+    config.MapType<Nullable<OffsetDateTime>>(fun () ->
+      schemas.NullableOffsetDateTime)
+
+    config.MapType<Nullable<ZonedDateTime>>(fun () ->
+      schemas.NullableZonedDateTime)
+
     config.MapType<Nullable<Interval>>(fun () -> schemas.NullableInterval)
     config.MapType<Nullable<Offset>>(fun () -> schemas.NullableOffset)
     config.MapType<Nullable<Duration>>(fun () -> schemas.NullableDuration)
@@ -37,6 +47,8 @@ type SwaggerGenOptionsExtensions =
     config.MapType<DateTimeZone>(fun () -> schemas.DateTimeZone)
 
   [<Extension>]
-  static member ConfigureForNodaTime(config : SwaggerGenOptions) =
-    SwaggerGenOptionsExtensions.ConfigureForNodaTime
-      (config, JsonConvert.DefaultSettings.Invoke())
+  static member ConfigureForNodaTime(config: SwaggerGenOptions) =
+    SwaggerGenOptionsExtensions.ConfigureForNodaTime(
+      config,
+      JsonConvert.DefaultSettings.Invoke()
+    )

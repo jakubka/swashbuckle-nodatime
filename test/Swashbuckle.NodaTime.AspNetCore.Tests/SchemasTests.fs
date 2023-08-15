@@ -10,106 +10,109 @@ open Xunit
 
 module SchemasTests =
   // Initialize default settings
-  do JsonConvert.DefaultSettings <- fun () ->
-    JsonSerializerSettings().ConfigureForNodaTime DateTimeZoneProviders.Tzdb
+  do
+    JsonConvert.DefaultSettings <-
+      fun () ->
+        JsonSerializerSettings().ConfigureForNodaTime DateTimeZoneProviders.Tzdb
 
   // Helper function for example deserialization
   // Note: OpenApiSchema.Example is a crappy interface cast to concrete type
-  let private tryDeserializeExample<'T>(schema : OpenApiSchema) =
+  let private tryDeserializeExample<'T> (schema: OpenApiSchema) =
     let value = schema.Example :?> OpenApiString
+
     value.Value
-      |> JsonConvert.SerializeObject
-      |> JsonConvert.DeserializeObject<'T>
-      |> ignore
+    |> JsonConvert.SerializeObject
+    |> JsonConvert.DeserializeObject<'T>
+    |> ignore
 
   // Container gets re-used across all test methods
   let private schemas = SchemaCreator().Create()
 
   [<Fact>]
-  let private ``Instant schema example should be deserializable``() =
+  let private ``Instant schema example should be deserializable`` () =
     tryDeserializeExample<Instant> schemas.Instant
 
   [<Fact>]
-  let private ``Instant schema format should be date-time``() =
+  let private ``Instant schema format should be date-time`` () =
     Assert.Equal("date-time", schemas.Instant.Format)
 
   [<Fact>]
-  let private ``DateTimeZone schema example should be deserializable``() =
+  let private ``DateTimeZone schema example should be deserializable`` () =
     tryDeserializeExample<DateTimeZone> schemas.DateTimeZone
 
   [<Fact>]
-  let private ``DateTimeZone schema format should be null``() =
+  let private ``DateTimeZone schema format should be null`` () =
     Assert.Null schemas.DateTimeZone.Format
 
   [<Fact>]
-  let private ``Duration schema example should be deserializable``() =
+  let private ``Duration schema example should be deserializable`` () =
     tryDeserializeExample<Duration> schemas.Duration
 
   [<Fact>]
-  let private ``Duration schema format should be null``() =
+  let private ``Duration schema format should be null`` () =
     Assert.Null schemas.Duration.Format
 
   [<Fact>]
-  let private ``LocalDate schema example should be deserializable``() =
+  let private ``LocalDate schema example should be deserializable`` () =
     tryDeserializeExample<LocalDate> schemas.LocalDate
 
   [<Fact>]
-  let private ``LocalDate schema format should be full-date``() =
+  let private ``LocalDate schema format should be full-date`` () =
     Assert.Equal("full-date", schemas.LocalDate.Format)
 
   [<Fact>]
-  let private ``LocalDateTime schema example should be deserializable``() =
+  let private ``LocalDateTime schema example should be deserializable`` () =
     tryDeserializeExample<LocalDateTime> schemas.LocalDateTime
 
   [<Fact>]
-  let private ``LocalDateTime schema format should be date-time``() =
+  let private ``LocalDateTime schema format should be date-time`` () =
     Assert.Null schemas.LocalDateTime.Format
 
   [<Fact>]
-  let private ``LocalTime schema example should be deserializable``() =
+  let private ``LocalTime schema example should be deserializable`` () =
     tryDeserializeExample<LocalTime> schemas.LocalTime
 
   [<Fact>]
-  let private ``LocalTime schema format should be full-time``() =
+  let private ``LocalTime schema format should be full-time`` () =
     Assert.Equal("partial-time", schemas.LocalTime.Format)
 
   [<Fact>]
-  let private ``Offset schema should example be deserializable``() =
+  let private ``Offset schema should example be deserializable`` () =
     tryDeserializeExample<Offset> schemas.Offset
 
   [<Fact>]
-  let private ``Offset schema format should be time-numoffset``() =
+  let private ``Offset schema format should be time-numoffset`` () =
     Assert.Equal("time-numoffset", schemas.Offset.Format)
 
   [<Fact>]
-  let private ``OffsetDateTime schema example should be deserializable``() =
+  let private ``OffsetDateTime schema example should be deserializable`` () =
     tryDeserializeExample<OffsetDateTime> schemas.OffsetDateTime
 
   [<Fact>]
-  let private ``OffsetDateTime schema format should be date-time``() =
+  let private ``OffsetDateTime schema format should be date-time`` () =
     Assert.Equal("date-time", schemas.OffsetDateTime.Format)
 
   [<Fact>]
-  let private ``Period schema example should be deserializable``() =
+  let private ``Period schema example should be deserializable`` () =
     tryDeserializeExample<Period> schemas.Period
 
   [<Fact>]
-  let private ``Period schema format should be null``() =
+  let private ``Period schema format should be null`` () =
     Assert.Null schemas.Period.Format
 
   [<Fact>]
-  let private ``ZonedDateTime schema example should be deserializable``() =
+  let private ``ZonedDateTime schema example should be deserializable`` () =
     tryDeserializeExample<ZonedDateTime> schemas.ZonedDateTime
 
   [<Fact>]
-  let private ``ZonedDateTime schema format should be null``() =
+  let private ``ZonedDateTime schema format should be null`` () =
     Assert.Null schemas.ZonedDateTime.Format
 
   [<Fact>]
-  let private ``Interval schema example should be null``() =
+  let private ``Interval schema example should be null`` () =
     Assert.Null schemas.Interval.Example
 
   [<Fact>]
-  let private ``Interval schema start & end formats should be date-time``() =
+  let private ``Interval schema start & end formats should be date-time`` () =
     Assert.Equal("date-time", schemas.Interval.Properties.["Start"].Format)
     Assert.Equal("date-time", schemas.Interval.Properties.["End"].Format)
