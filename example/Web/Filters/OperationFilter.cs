@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Globalization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -6,7 +7,7 @@ namespace Swashbuckle.NodaTime.AspNetCore.Web.Filters;
 
 internal sealed class OperationFilter : IOperationFilter
 {
-	private readonly IImmutableDictionary<int, string> _descriptionOverrides =
+	private readonly ImmutableDictionary<int, string> _descriptionOverrides =
 		new Dictionary<int, string>
 		{
 			[StatusCodes.Status201Created] = "Created",
@@ -23,8 +24,8 @@ internal sealed class OperationFilter : IOperationFilter
 	public void Apply(OpenApiOperation operation, OperationFilterContext context) =>
 		operation.Responses?.ToList().ForEach(r =>
 		{
-			var keyVal = int.Parse(r.Key);
-			if (_descriptionOverrides.ContainsKey(keyVal))
-				r.Value.Description = _descriptionOverrides[keyVal];
+			var keyVal = int.Parse(r.Key, CultureInfo.InvariantCulture);
+			if (_descriptionOverrides.TryGetValue(keyVal, out var value))
+				r.Value.Description = value;
 		});
 }

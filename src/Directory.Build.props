@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
     <Authors>Jakub Kadlubiec, Brian Buvinghausen</Authors>
     <Company>Buvinghausen Solutions</Company>
     <Summary>Go to https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/issues to report bugs, request features, etc. forked from https://github.com/jakubka/swashbuckle-nodatime</Summary>
@@ -23,6 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Condition="'$(TargetFramework)' == 'net8.0'" Update="FSharp.Core" Version="8.0.*-*" />
     <PackageReference Condition="'$(TargetFramework)' == 'net7.0'" Update="FSharp.Core" Version="7.0.*" />
     <PackageReference Condition="'$(TargetFramework)' == 'net6.0'" Update="FSharp.Core" Version="6.0.*" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.*" PrivateAssets="All" />
