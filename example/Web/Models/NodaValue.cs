@@ -27,7 +27,8 @@ public sealed class NodaValue
 				.PlusTicks(TimeSpan.TicksPerSecond)
 				.PlusTicks(TimeSpan.TicksPerMillisecond));
 		Period = Period.Between(LocalDateTime,
-			Interval.End.InZone(DateTimeZone).LocalDateTime, PeriodUnits.AllUnits);
+			Interval.End.InZone(DateTimeZone).LocalDateTime,
+			PeriodUnits.AllUnits);
 	}
 
 	public DateTimeZone DateTimeZone { get; }

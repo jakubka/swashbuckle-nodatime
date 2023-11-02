@@ -13,15 +13,20 @@ internal sealed class OperationFilter : IOperationFilter
 			[StatusCodes.Status201Created] = "Created",
 			[StatusCodes.Status202Accepted] = "Accepted",
 			[StatusCodes.Status204NoContent] = "No Content",
-			[StatusCodes.Status415UnsupportedMediaType] = "Unsupported Media Type",
-			[StatusCodes.Status422UnprocessableEntity] = "Unprocessable Entity",
-			[StatusCodes.Status500InternalServerError] = "Internal Server Error",
+			[StatusCodes.Status415UnsupportedMediaType] =
+				"Unsupported Media Type",
+			[StatusCodes.Status422UnprocessableEntity] =
+				"Unprocessable Entity",
+			[StatusCodes.Status500InternalServerError] =
+				"Internal Server Error",
 			[StatusCodes.Status502BadGateway] = "Bad Gateway",
-			[StatusCodes.Status503ServiceUnavailable] = "Service Unavailable",
+			[StatusCodes.Status503ServiceUnavailable] =
+				"Service Unavailable",
 			[StatusCodes.Status504GatewayTimeout] = "Gateway Timeout"
 		}.ToImmutableDictionary();
 
-	public void Apply(OpenApiOperation operation, OperationFilterContext context) =>
+	public void Apply(OpenApiOperation operation,
+		OperationFilterContext context) =>
 		operation.Responses?.ToList().ForEach(r =>
 		{
 			var keyVal = int.Parse(r.Key, CultureInfo.InvariantCulture);
