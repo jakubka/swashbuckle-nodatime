@@ -5,7 +5,7 @@
     <Authors>Jakub Kadlubiec, Brian Buvinghausen</Authors>
     <Company>Buvinghausen Solutions</Company>
     <Summary>Go to https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/issues to report bugs, request features, etc. forked from https://github.com/jakubka/swashbuckle-nodatime</Summary>
-    <Copyright>Copyright © 2023 Brian Buvinghausen</Copyright>
+    <Copyright>Copyright © 2024 Brian Buvinghausen</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/buvinghausen/Swashbuckle.NodaTime.AspNetCore/blob/master/README.md</PackageProjectUrl>
